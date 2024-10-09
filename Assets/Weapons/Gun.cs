@@ -25,7 +25,10 @@ public class Gun : MonoBehaviour
         
     void Shoot()
     {
-        Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        
+        bullet.transform.rotation = firepoint.rotation; //when the bullet is created, orients it correctly
+        
     }
         
      
