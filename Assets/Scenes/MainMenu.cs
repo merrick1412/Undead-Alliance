@@ -9,4 +9,14 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("SampleScene");
     }
+
+    public void Options()
+    {
+        SceneManager.LoadSceneAsync("OptionsScene");
+    }
+
+    public void ReturnToMain()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 }
