@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Bullets
-  - 
-  - 
+  - Colliders
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: TileMap
+    uniqueID: 3045646777
+    locked: 0
+  - name: Collideables
+    uniqueID: 333753797
+    locked: 0
+  - name: Characters
+    uniqueID: 1390380395
+    locked: 0
+  - name: Bullets
+    uniqueID: 1321194997
+    locked: 0
+  - name: Ui
+    uniqueID: 2262500065
     locked: 0
