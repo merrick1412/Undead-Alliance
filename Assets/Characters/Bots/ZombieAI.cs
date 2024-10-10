@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class ZombieAI : MonoBehaviour
 {
+
+    public GameObject Traget; //tester for cube
+    public float speed = 2f;        // Speed at which the zombie moves test for cube
     public Transform player;        // Reference to the player's transform
     private NavMeshAgent navAgent;  // NavMeshAgent for pathfinding
 
@@ -37,10 +40,17 @@ public class ZombieAI : MonoBehaviour
             Idle();
         }
     }
-
     private void ChasePlayer()
     {
-        navAgent.SetDestination(player.position); // Set player as destination for NavMeshAgent
+        // Assuming 'Traget' is a GameObject, access its transform's position
+        Vector3 targetPosition = new Vector3(Traget.transform.position.x, transform.position.y, Traget.transform.position.z);
+
+        // Make the zombie look at the target's X and Z position, ignoring Y-axis
+        transform.LookAt(targetPosition); // Look at the target without moving up or down
+
+        // Move forward only on the X and Z axes
+        Vector3 direction = Vector3.forward;
+        transform.Translate(direction * Time.deltaTime * speed, Space.Self); // Move relative to the zombie's own forward
     }
 
     private void AttackPlayer()
