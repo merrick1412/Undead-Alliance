@@ -15,11 +15,43 @@ public class Inventory : MonoBehaviour
     {
         EquipWeapon(sidearm);
     }
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1))//these correspond to numbers on keybooard for weapon selection
+        {
+            EquipWeapon(primary);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipWeapon(secondary);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EquipWeapon(sidearm);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            EquipWeapon(equipment);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            EquipWeapon(special);
+        }
+        if (Input.GetKeyDown(KeyCode.G)) //g for grenades
+        {
+            EquipWeapon(throwable);
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace)) //backspace to drop gun
+        {
+            DropWeapon(currentWeapon);
+        }
+
     }
 
     public void EquipWeapon(Weapon weapon)
@@ -28,7 +60,15 @@ public class Inventory : MonoBehaviour
         {
             return;
         }
-        currentWeapon= weapon;
+        if (currentWeapon != null)
+        {
+            currentWeapon.HideWeapon();
+        }
+        currentWeapon= weapon; //self explanatory
+        if (currentWeapon!=null)
+        {
+            currentWeapon.ShowWeapon();
+        }
         Debug.Log($"Equipped {weapon.weaponName}");
 
     }
