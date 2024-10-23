@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
 
             if (currentWeapon.isAutomatic())
             {
-                if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+                if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
                 {
                     nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
                     Shoot();
@@ -38,7 +38,7 @@ public class Shooting : MonoBehaviour
             }
             else
             {
-                if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+                if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
                 {
                     nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
                     Shoot();

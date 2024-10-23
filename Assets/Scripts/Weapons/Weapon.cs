@@ -12,13 +12,18 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public float bulletForce;
     public float rateOfFire;
     public bool Automatic;
+    public bool StarterWeapon = false;
     public bool isAutomatic()
     {
         return Automatic;       
     }
+    
     public void Start()
     {
-        gameObject.SetActive(true);
+        if (StarterWeapon)
+        {              
+            gameObject.SetActive(true);        
+        }
     }
     public void HideWeapon()
     {
