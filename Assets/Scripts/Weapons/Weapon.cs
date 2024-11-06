@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public float rateOfFire;
     public bool Automatic;
     public bool StarterWeapon = false;
+    public int MagazineSize;
     public bool isAutomatic()
     {
         return Automatic;       
