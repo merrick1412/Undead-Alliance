@@ -17,14 +17,14 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         inventory = GetComponent<Inventory>();
-        audioSource = transform.Find("Weapon").GetComponentInChildren<AudioSource>(); //grabs gunshot from weapon
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         currentWeapon = inventory.GetCurrentWeapon();
-
+        audioSource = currentWeapon.GetComponent<AudioSource>();
         if (currentWeapon != null)
         {
 
