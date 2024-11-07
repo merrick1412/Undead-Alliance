@@ -25,6 +25,10 @@ public class Weapon : MonoBehaviour //parent class for weapons
         {              
             gameObject.SetActive(true);        
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
     public void HideWeapon()
     {
@@ -33,5 +37,18 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public void ShowWeapon()
     {
         gameObject.SetActive(true);
+    }
+    public void CopyStats(Weapon other) //copy function
+    {
+        weaponName = other.weaponName;
+        gunshotSound = other.gunshotSound;
+        weaponType= other.weaponType;
+        bulletForce = other.bulletForce;
+        rateOfFire = other.rateOfFire;
+        Automatic = other.Automatic;
+        StarterWeapon = other.StarterWeapon;
+        MagazineSize = other.MagazineSize;
+        bulletPrefab = other.bulletPrefab;
+        ammoType= other.ammoType;
     }
 }

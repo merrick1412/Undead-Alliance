@@ -34,6 +34,14 @@ public class Shooting : MonoBehaviour
                 {
                     nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
                     Shoot();
+                    if (!audioSource.isPlaying) //automatic weapons should play shooting when button is down then stop
+                    {
+                        audioSource.Play();
+                    }
+                }
+                if(Input.GetButtonUp("Fire1"))
+                {
+                    audioSource.Stop();
                 }
             }
             else
@@ -50,7 +58,10 @@ public class Shooting : MonoBehaviour
     private void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //creates bullet
-        audioSource.PlayOneShot(currentWeapon.gunshotSound); //plays gunshot
+        if (!currentWeapon.Automatic)
+        {
+            audioSource.PlayOneShot(currentWeapon.gunshotSound); //plays gunshot
+        }
         bullet.layer = LayerMask.NameToLayer("Bullets");//makes sure it gets assigned to the correct collision layer
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);

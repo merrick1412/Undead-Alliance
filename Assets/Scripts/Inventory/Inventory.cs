@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     public Weapon throwable;
     public Weapon special;
     private Weapon currentWeapon; //active weapon
+    public GameObject WeaponDropPrefab; //assigns the prefab for creating dropped weapons
     void Start()
     {
         EquipWeapon(sidearm);
@@ -122,6 +123,25 @@ public class Inventory : MonoBehaviour
     {
         if (weapon == null) return;
 
-        //need to implement logic to drop guns
+        Vector3 dropPosition = transform.position + transform.forward;
+        GameObject droppedItem = Instantiate(WeaponDropPrefab,dropPosition,Quaternion.identity); //created the dropped gun object
+
+        Weapon droppedWeapon = droppedItem.GetComponent<Weapon>(); //gives the weapon script to the dropped item prefab 
+        if (droppedWeapon != null)
+        {
+            droppedWeapon.CopyStats(weapon); //gives the dropped gun the same stats as the equipped version
+        }
+
+        if (weapon == sidearm) sidearm = null; //deletes the gun from inventory. yes i know this is bad code
+        else if (weapon == primary) primary = null;
+        else if (weapon == secondary) secondary = null;
+        else if (weapon == throwable) throwable = null;
+        else if (weapon == equipment) equipment = null;
+        else if (weapon == special) special = null;
+        if (currentWeapon == weapon) //makes sure its unequiped
+        {
+            currentWeapon = null;
+        }
+
     }
 }
