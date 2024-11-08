@@ -1,3 +1,4 @@
+using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -11,6 +12,10 @@ public class PlayerControls : MonoBehaviour
     Vector2 mousePos;
     Rigidbody2D rb;
     public Camera cam;
+
+    private Material material;
+    private Color materialTintColor;
+    private LevelSystem levelSystem;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,26 @@ public class PlayerControls : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //grabs mouse location
     }
 
+    public void SetLevelSystem(LevelSystem levelSystem) {
+        this.levelSystem = levelSystem;
+
+        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+    }
+
+    private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e) {
+        Flash(new Color(1, 1, 1, 1));
+    }
+
+    /*
+    private void SpawnParticleEffect() {
+        Transform effect = Instantiate(pfEffect, transform);
+        FunctionTimer.Create(() => Destroy(effect.gameObject), 3f);
+    }*/
+
+    private void Flash(Color flashColor) {
+        materialTintColor = flashColor;
+        material.SetColor("_Tint", materialTintColor);
+    }
 
     private void FixedUpdate()
     {
