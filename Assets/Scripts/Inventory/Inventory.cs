@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
             }
             primary= newWeapon;
         }
-        else if (newWeapon.weaponType == WeaponType.Secondary)
+        else if (newWeapon.weaponType == WeaponType.Secondary) //this code sucks but works
         {
             if (secondary != null)
             {
@@ -126,10 +126,20 @@ public class Inventory : MonoBehaviour
         Vector3 dropPosition = transform.position + transform.forward;
         GameObject droppedItem = Instantiate(WeaponDropPrefab,dropPosition,Quaternion.identity); //created the dropped gun object
 
+        droppedItem.AddComponent<Weapon>();
+        droppedItem.AddComponent<SpriteRenderer>();
+        SpriteRenderer droppedSprite = droppedItem.GetComponent<SpriteRenderer>();
+        
+        if (droppedSprite != null)
+        {
+            droppedSprite = weapon.GetComponent<SpriteRenderer>();
+        }
         Weapon droppedWeapon = droppedItem.GetComponent<Weapon>(); //gives the weapon script to the dropped item prefab 
         if (droppedWeapon != null)
         {
             droppedWeapon.CopyStats(weapon); //gives the dropped gun the same stats as the equipped version
+            
+            
         }
 
         if (weapon == sidearm) sidearm = null; //deletes the gun from inventory. yes i know this is bad code

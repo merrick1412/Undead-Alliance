@@ -51,4 +51,6 @@ public class Weapon : MonoBehaviour //parent class for weapons
         bulletPrefab = other.bulletPrefab;
         ammoType= other.ammoType;
     }
+
+    
 }
