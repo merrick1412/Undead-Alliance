@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
     public Weapon special;
     private Weapon currentWeapon; //active weapon
     public GameObject WeaponDropPrefab; //assigns the prefab for creating dropped weapons
+
+    private float fKeyHoldTime = 0f; //time the key has been held down
+    private float requiredHoldTime = 3f; //checks that its been held down for 3 seconds
     void Start()
     {
         EquipWeapon(sidearm);
@@ -23,6 +26,13 @@ public class Inventory : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        HandleWeaponSwitch(); //split these up to remove clutter, they handle
+        HandleWeaponPickup(); //keyboard input for inventory stuff
+
+    }
+
+    private void HandleWeaponSwitch()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))//these correspond to numbers on keybooard for weapon selection
         {
@@ -52,9 +62,29 @@ public class Inventory : MonoBehaviour
         {
             DropWeapon(currentWeapon);
         }
-
     }
 
+    private Weapon GetWeaponToPickUp(DroppedWeapon droppedweapon)
+    {
+        
+    }
+    private void HandleWeaponPickup()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fKeyHoldTime += Time.deltaTime; //adds to hold time
+            if (fKeyHoldTime >= requiredHoldTime)
+            {
+                //calls weapon pickup; essentially this checks that you held down f for 3 seconds
+                PickUpWeapon(GetWeaponToPickUp());
+                fKeyHoldTime = 0f;
+            }
+        }
+        else
+        {
+            fKeyHoldTime = 0f; //if f is released reset the timer
+        }
+    }
     public void EquipWeapon(Weapon weapon)
     {
         if (weapon == null) //cant equip nothing
@@ -141,6 +171,11 @@ public class Inventory : MonoBehaviour
             
             
         }
+        SpriteRenderer droppedSprite = droppedItem.GetComponent<SpriteRenderer>(); //gives the sprite
+        if (droppedSprite != null)
+        {
+            droppedItem.GetComponent<SpriteRenderer>().sprite = droppedSprite.sprite;
+        }
 
         if (weapon == sidearm) sidearm = null; //deletes the gun from inventory. yes i know this is bad code
         else if (weapon == primary) primary = null;
@@ -148,7 +183,7 @@ public class Inventory : MonoBehaviour
         else if (weapon == throwable) throwable = null;
         else if (weapon == equipment) equipment = null;
         else if (weapon == special) special = null;
-        if (currentWeapon == weapon) //makes sure its unequiped
+        if (currentWeapon == weapon) //makes sure its unequipped
         {
             currentWeapon = null;
         }
