@@ -10,13 +10,14 @@ public class Inventory : MonoBehaviour
     public Weapon equipment;
     public Weapon throwable;
     public Weapon special;
-    private Weapon currentWeapon; //active weapon
+    public Weapon currentWeapon; //active weapon
     public GameObject WeaponDropPrefab; //assigns the prefab for creating dropped weapons
+    public PlayerInventoryController playerInventoryController; //interfaces between inventory and gameworld
 
-    private float fKeyHoldTime = 0f; //time the key has been held down
-    private float requiredHoldTime = 3f; //checks that its been held down for 3 seconds
+    
     void Start()
     {
+        PlayerInventoryController playerInventoryController= GetComponent<PlayerInventoryController>();
         EquipWeapon(sidearm);
     }
     public Weapon GetCurrentWeapon()
@@ -29,7 +30,11 @@ public class Inventory : MonoBehaviour
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
         HandleWeaponPickup(); //keyboard input for inventory stuff
-
+        Debug.Log($"current weapon is {currentWeapon}");
+        if (!currentWeapon.isActiveAndEnabled)
+        {
+            currentWeapon.gameObject.SetActive(true);
+        }
     }
 
     private void HandleWeaponSwitch()
@@ -64,26 +69,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private Weapon GetWeaponToPickUp(DroppedWeapon droppedweapon)
-    {
-        
-    }
     private void HandleWeaponPickup()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            fKeyHoldTime += Time.deltaTime; //adds to hold time
-            if (fKeyHoldTime >= requiredHoldTime)
-            {
-                //calls weapon pickup; essentially this checks that you held down f for 3 seconds
-                PickUpWeapon(GetWeaponToPickUp());
-                fKeyHoldTime = 0f;
-            }
-        }
-        else
-        {
-            fKeyHoldTime = 0f; //if f is released reset the timer
-        }
+       
     }
     public void EquipWeapon(Weapon weapon)
     {
@@ -91,16 +79,15 @@ public class Inventory : MonoBehaviour
         {
             return;
         }
-        if (currentWeapon != null)
+        if (currentWeapon != null) //hides the currently equipped gun
         {
             currentWeapon.HideWeapon();
         }
-        currentWeapon= weapon; //self explanatory
-        if (currentWeapon!=null)
-        {
-            currentWeapon.ShowWeapon();
-        }
-        Debug.Log($"Equipped {weapon.weaponName}");
+        
+        currentWeapon = weapon; //self explanatory
+        currentWeapon.ShowWeapon();
+
+        Debug.Log($"Equipped {currentWeapon.weaponName}");
 
     }
 
@@ -113,6 +100,23 @@ public class Inventory : MonoBehaviour
                 DropWeapon(sidearm); //drops if you already have one
             }
             sidearm = newWeapon;
+        }
+        else if (newWeapon.weaponType == WeaponType.Primary && primary != null) //what this does is allows interchangablility between primary and secondary weapons
+        {
+            if (secondary == null)
+            {
+                newWeapon.weaponType = WeaponType.Secondary; //if secondary slot is empty, and picking up primary, converts weapon to secondary and equips
+                secondary = newWeapon;
+            }
+            
+        }
+        else if (newWeapon.weaponType == WeaponType.Secondary && secondary != null)
+        {
+            if (primary == null)
+            {
+                newWeapon.weaponType= WeaponType.Primary;
+                primary= newWeapon;
+            }
         }
         else if (newWeapon.weaponType == WeaponType.Primary)
         {
@@ -146,47 +150,40 @@ public class Inventory : MonoBehaviour
             }
             equipment= newWeapon;
         }
+        
 
     }
 
     public void DropWeapon(Weapon weapon)
     {
-        if (weapon == null) return;
+        if (weapon == null) return; //this makes sure the dropped weapon prefab gets all the components
 
         Vector3 dropPosition = transform.position + transform.forward;
-        GameObject droppedItem = Instantiate(WeaponDropPrefab,dropPosition,Quaternion.identity); //created the dropped gun object
+        GameObject droppedItem = Instantiate(WeaponDropPrefab, dropPosition, Quaternion.identity);
+        droppedItem.transform.SetParent(null);
 
-        droppedItem.AddComponent<Weapon>();
-        droppedItem.AddComponent<SpriteRenderer>();
-        SpriteRenderer droppedSprite = droppedItem.GetComponent<SpriteRenderer>();
-        
-        if (droppedSprite != null)
-        {
-            droppedSprite = weapon.GetComponent<SpriteRenderer>();
-        }
-        Weapon droppedWeapon = droppedItem.GetComponent<Weapon>(); //gives the weapon script to the dropped item prefab 
+        Weapon droppedWeapon = droppedItem.GetComponent<Weapon>();
         if (droppedWeapon != null)
         {
-            droppedWeapon.CopyStats(weapon); //gives the dropped gun the same stats as the equipped version
-            
-            
-        }
-        SpriteRenderer droppedSprite = droppedItem.GetComponent<SpriteRenderer>(); //gives the sprite
-        if (droppedSprite != null)
-        {
-            droppedItem.GetComponent<SpriteRenderer>().sprite = droppedSprite.sprite;
+            droppedWeapon.CopyStats(weapon);
         }
 
-        if (weapon == sidearm) sidearm = null; //deletes the gun from inventory. yes i know this is bad code
+        SpriteRenderer droppedSpriteRenderer = droppedItem.GetComponent<SpriteRenderer>();
+        SpriteRenderer weaponSpriteRenderer = weapon.GetComponent<SpriteRenderer>();
+
+        if (droppedSpriteRenderer != null && weaponSpriteRenderer != null)
+        {
+            droppedSpriteRenderer.sprite = weaponSpriteRenderer.sprite;
+        }
+
+        if (weapon == sidearm) sidearm = null;
         else if (weapon == primary) primary = null;
         else if (weapon == secondary) secondary = null;
-        else if (weapon == throwable) throwable = null;
-        else if (weapon == equipment) equipment = null;
-        else if (weapon == special) special = null;
-        if (currentWeapon == weapon) //makes sure its unequipped
-        {
-            currentWeapon = null;
-        }
+
+        if (currentWeapon == weapon) currentWeapon = null;
+        Destroy(weapon.gameObject);
+        Debug.Log($"Dropped {weapon.weaponName} at {dropPosition}");
+        
 
     }
 }

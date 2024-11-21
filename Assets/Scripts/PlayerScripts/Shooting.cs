@@ -23,34 +23,37 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentWeapon = inventory.GetCurrentWeapon();
-        audioSource = currentWeapon.GetComponent<AudioSource>();
-        if (currentWeapon != null)
+        if (inventory.GetCurrentWeapon() != null)
         {
-
-            if (currentWeapon.isAutomatic())
+            currentWeapon = inventory.GetCurrentWeapon();
+            audioSource = currentWeapon.GetComponent<AudioSource>();
+            if (currentWeapon != null)
             {
-               
-                if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+
+                if (currentWeapon.isAutomatic())
                 {
-                    nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
-                    Shoot();
-                    if (!audioSource.isPlaying) //automatic weapons should play shooting when button is down then stop
+
+                    if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
                     {
-                        audioSource.Play();
+                        nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
+                        Shoot();
+                        if (!audioSource.isPlaying) //automatic weapons should play shooting when button is down then stop
+                        {
+                            audioSource.Play();
+                        }
+                    }
+                    if (Input.GetButtonUp("Fire1"))
+                    {
+                        audioSource.Stop();
                     }
                 }
-                if(Input.GetButtonUp("Fire1"))
+                else
                 {
-                    audioSource.Stop();
-                }
-            }
-            else
-            {
-                if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
-                {
-                    nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
-                    Shoot();
+                    if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+                    {
+                        nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; //calculates when gun can shoot again
+                        Shoot();
+                    }
                 }
             }
         }
