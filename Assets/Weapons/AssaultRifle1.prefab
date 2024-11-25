@@ -107,6 +107,8 @@ MonoBehaviour:
   rateOfFire: 8
   Automatic: 1
   MagazineSize: 0
+  inventory: {fileID: 0}
+  playerInventoryController: {fileID: 0}
 --- !u!82 &9159241194733521823
 AudioSource:
   m_ObjectHideFlags: 0

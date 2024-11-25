@@ -14,11 +14,11 @@ public class Inventory : MonoBehaviour
     public GameObject WeaponDropPrefab; //assigns the prefab for creating dropped weapons
     public PlayerInventoryController playerInventoryController; //interfaces between inventory and gameworld
 
-    
+
     void Start()
     {
-        PlayerInventoryController playerInventoryController= GetComponent<PlayerInventoryController>();
-        EquipWeapon(sidearm);
+        PlayerInventoryController playerInventoryController = GetComponent<PlayerInventoryController>();
+        EquipWeapon(primary);
     }
     public Weapon GetCurrentWeapon()
     {
@@ -30,11 +30,7 @@ public class Inventory : MonoBehaviour
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
         HandleWeaponPickup(); //keyboard input for inventory stuff
-        Debug.Log($"current weapon is {currentWeapon}");
-        if (!currentWeapon.isActiveAndEnabled)
-        {
-            currentWeapon.gameObject.SetActive(true);
-        }
+
     }
 
     private void HandleWeaponSwitch()
@@ -42,14 +38,15 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))//these correspond to numbers on keybooard for weapon selection
         {
             EquipWeapon(primary);
+            Debug.Log($"running key down");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            EquipWeapon(secondary);
+            EquipWeapon(secondary); Debug.Log($"running key down");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            EquipWeapon(sidearm);
+            EquipWeapon(sidearm); Debug.Log($"running key down");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -71,21 +68,20 @@ public class Inventory : MonoBehaviour
 
     private void HandleWeaponPickup()
     {
-       
+
     }
     public void EquipWeapon(Weapon weapon)
     {
-        if (weapon == null) //cant equip nothing
-        {
-            return;
-        }
+        Debug.Log($"trying to equip {weapon.weaponName}");
         if (currentWeapon != null) //hides the currently equipped gun
         {
-            currentWeapon.HideWeapon();
+            HideWeapon(currentWeapon);
+            Debug.Log($"hiding {currentWeapon.weaponName}");
+
         }
-        
+
         currentWeapon = weapon; //self explanatory
-        currentWeapon.ShowWeapon();
+        ShowWeapon(currentWeapon);
 
         Debug.Log($"Equipped {currentWeapon.weaponName}");
 
@@ -108,14 +104,14 @@ public class Inventory : MonoBehaviour
                 newWeapon.weaponType = WeaponType.Secondary; //if secondary slot is empty, and picking up primary, converts weapon to secondary and equips
                 secondary = newWeapon;
             }
-            
+
         }
         else if (newWeapon.weaponType == WeaponType.Secondary && secondary != null)
         {
             if (primary == null)
             {
-                newWeapon.weaponType= WeaponType.Primary;
-                primary= newWeapon;
+                newWeapon.weaponType = WeaponType.Primary;
+                primary = newWeapon;
             }
         }
         else if (newWeapon.weaponType == WeaponType.Primary)
@@ -124,7 +120,7 @@ public class Inventory : MonoBehaviour
             {
                 DropWeapon(primary);
             }
-            primary= newWeapon;
+            primary = newWeapon;
         }
         else if (newWeapon.weaponType == WeaponType.Secondary) //this code sucks but works
         {
@@ -132,7 +128,7 @@ public class Inventory : MonoBehaviour
             {
                 DropWeapon(secondary);
             }
-            secondary= newWeapon;
+            secondary = newWeapon;
         }
         else if (newWeapon.weaponType == WeaponType.Throwable)
         {
@@ -140,7 +136,7 @@ public class Inventory : MonoBehaviour
             {
                 DropWeapon(throwable);
             }
-            throwable= newWeapon;
+            throwable = newWeapon;
         }
         else if (newWeapon.weaponType == WeaponType.Equipment)
         {
@@ -148,9 +144,9 @@ public class Inventory : MonoBehaviour
             {
                 DropWeapon(equipment);
             }
-            equipment= newWeapon;
+            equipment = newWeapon;
         }
-        
+
 
     }
 
@@ -183,7 +179,18 @@ public class Inventory : MonoBehaviour
         if (currentWeapon == weapon) currentWeapon = null;
         Destroy(weapon.gameObject);
         Debug.Log($"Dropped {weapon.weaponName} at {dropPosition}");
-        
 
+
+    }
+    public void HideWeapon(Weapon weapon)
+    {
+        weapon.gameObject.SetActive(false);
+        Debug.Log($"Deactivating {weapon.weaponName}");
+    }
+
+    public void ShowWeapon(Weapon weapon)
+    {
+        weapon.gameObject.SetActive(true);
+        Debug.Log($"Activating {weapon.weaponName}");
     }
 }
