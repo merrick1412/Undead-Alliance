@@ -26,6 +26,7 @@ public class PlayerControls : MonoBehaviour {
         movementInput.y = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //grabs mouse location
+        cam.transform.rotation = Quaternion.identity;
     }
 
     public void SetLevelSystem(LevelSystem levelSystem) {
@@ -55,6 +56,8 @@ public class PlayerControls : MonoBehaviour {
         Vector2 lookDirection = mousePos - rb.position; //gets direction of mouse from player
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f; //gets the angle
         rb.rotation = angle;
+        cam.transform.rotation = Quaternion.identity;
+        
     }
 
 
