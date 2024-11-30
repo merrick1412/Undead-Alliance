@@ -55,7 +55,6 @@ MonoBehaviour:
   rateOfFire: 7
   Automatic: 1
   MagazineSize: 0
-  inventory: {fileID: 0}
   playerInventoryController: {fileID: 0}
 --- !u!212 &-1887980184424919259
 SpriteRenderer:

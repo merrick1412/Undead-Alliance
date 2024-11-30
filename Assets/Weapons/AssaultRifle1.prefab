@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3205722366461371143
 Transform:
   m_ObjectHideFlags: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
   rateOfFire: 8
   Automatic: 1
   MagazineSize: 0
-  inventory: {fileID: 0}
   playerInventoryController: {fileID: 0}
 --- !u!82 &9159241194733521823
 AudioSource:

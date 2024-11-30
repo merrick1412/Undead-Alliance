@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public WeaponManager weaponManager;
+    public Transform weaponParent;
+    public Transform weaponPos;
     public Weapon sidearm;
     public Weapon primary;
     public Weapon secondary;
@@ -11,14 +15,13 @@ public class Inventory : MonoBehaviour
     public Weapon throwable;
     public Weapon special;
     public Weapon currentWeapon; //active weapon
-    public GameObject WeaponDropPrefab; //assigns the prefab for creating dropped weapons
+    public GameObject weaponDropPrefab; //assigns the prefab for creating dropped weapons
     public PlayerInventoryController playerInventoryController; //interfaces between inventory and gameworld
 
 
     void Start()
     {
-        PlayerInventoryController playerInventoryController = GetComponent<PlayerInventoryController>();
-        EquipWeapon(primary);
+        EquipWeapon(sidearm);
     }
     public Weapon GetCurrentWeapon()
     {
@@ -70,7 +73,7 @@ public class Inventory : MonoBehaviour
     {
 
     }
-    public void EquipWeapon(Weapon weapon)
+    private void EquipWeapon(Weapon weapon)
     {
         Debug.Log($"trying to equip {weapon.weaponName}");
         if (currentWeapon != null) //hides the currently equipped gun
@@ -89,73 +92,86 @@ public class Inventory : MonoBehaviour
 
     public void PickUpWeapon(Weapon newWeapon)
     {
-        if (newWeapon.weaponType == WeaponType.Sidearm)
+        GameObject newWeaponPrefab = weaponManager.GetWeaponByName(newWeapon.weaponName);
+        if (newWeaponPrefab == null)
+        {
+            Debug.LogError($"Weapon with name {newWeapon.weaponName} not found!");
+            return;
+        }
+
+        GameObject newWeaponObject = Instantiate(newWeaponPrefab, weaponPos.position, weaponParent.rotation, weaponParent); //creates the new gun object and puts it in the right place
+        Weapon newWeaponScript = newWeaponObject.GetComponent<Weapon>();
+        
+        
+        
+        if (newWeaponScript.weaponType == WeaponType.Sidearm)
         {
             if (sidearm != null)
             {
                 DropWeapon(sidearm); //drops if you already have one
             }
-            sidearm = newWeapon;
+            
+            sidearm = newWeaponScript;
         }
-        else if (newWeapon.weaponType == WeaponType.Primary && primary != null) //what this does is allows interchangablility between primary and secondary weapons
+        else if (newWeaponScript.weaponType == WeaponType.Primary && primary != null) //what this does is allows interchangablility between primary and secondary weapons
         {
             if (secondary == null)
             {
-                newWeapon.weaponType = WeaponType.Secondary; //if secondary slot is empty, and picking up primary, converts weapon to secondary and equips
-                secondary = newWeapon;
+                newWeaponScript.weaponType = WeaponType.Secondary; //if secondary slot is empty, and picking up primary, converts weapon to secondary and equips
+                secondary = newWeaponScript;
             }
 
         }
-        else if (newWeapon.weaponType == WeaponType.Secondary && secondary != null)
+        else if (newWeaponScript.weaponType == WeaponType.Secondary && secondary != null)
         {
             if (primary == null)
             {
-                newWeapon.weaponType = WeaponType.Primary;
-                primary = newWeapon;
+                newWeaponScript.weaponType = WeaponType.Primary;
+                primary = newWeaponScript;
             }
         }
-        else if (newWeapon.weaponType == WeaponType.Primary)
+        else if (newWeaponScript.weaponType == WeaponType.Primary)
         {
             if (primary != null)
             {
                 DropWeapon(primary);
             }
-            primary = newWeapon;
+            primary = newWeaponScript;
         }
-        else if (newWeapon.weaponType == WeaponType.Secondary) //this code sucks but works
+        else if (newWeaponScript.weaponType == WeaponType.Secondary) //this code sucks but works
         {
             if (secondary != null)
             {
                 DropWeapon(secondary);
             }
-            secondary = newWeapon;
+            secondary = newWeaponScript;
         }
-        else if (newWeapon.weaponType == WeaponType.Throwable)
+        else if (newWeaponScript.weaponType == WeaponType.Throwable)
         {
             if (throwable != null)
             {
                 DropWeapon(throwable);
             }
-            throwable = newWeapon;
+            throwable = newWeaponScript;
         }
-        else if (newWeapon.weaponType == WeaponType.Equipment)
+        else if (newWeaponScript.weaponType == WeaponType.Equipment)
         {
             if (equipment != null)
             {
                 DropWeapon(equipment);
             }
-            equipment = newWeapon;
+            equipment = newWeaponScript;
         }
 
 
     }
 
-    public void DropWeapon(Weapon weapon)
+    private void DropWeapon(Weapon weapon)
     {
         if (weapon == null) return; //this makes sure the dropped weapon prefab gets all the components
 
         Vector3 dropPosition = transform.position + transform.forward;
-        GameObject droppedItem = Instantiate(WeaponDropPrefab, dropPosition, Quaternion.identity);
+        GameObject droppedItem = Instantiate(weaponDropPrefab, dropPosition, Quaternion.identity);
         droppedItem.transform.SetParent(null);
 
         Weapon droppedWeapon = droppedItem.GetComponent<Weapon>();
@@ -182,15 +198,18 @@ public class Inventory : MonoBehaviour
 
 
     }
-    public void HideWeapon(Weapon weapon)
+    private void HideWeapon(Weapon weapon)
     {
         weapon.gameObject.SetActive(false);
         Debug.Log($"Deactivating {weapon.weaponName}");
     }
 
-    public void ShowWeapon(Weapon weapon)
+    private void ShowWeapon(Weapon weapon)
     {
         weapon.gameObject.SetActive(true);
-        Debug.Log($"Activating {weapon.weaponName}");
+        Debug.Log(weapon.gameObject.activeSelf);
+        
     }
+
+    
 }
