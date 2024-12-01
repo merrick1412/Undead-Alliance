@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -80,5 +81,13 @@ public class SpawnManager : MonoBehaviour
         isRoundActive = false;
         roundTimer = 0f;
         currentRound++;
+    }
+}
+
+public class UIManager
+{
+    internal void UpdateRoundText(int currentRound)
+    {
+        throw new NotImplementedException();
     }
 }

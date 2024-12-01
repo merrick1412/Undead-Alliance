@@ -4,6 +4,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using CodeMonkey.Utils;
+using HealthBarUi;
 
 public class PlayerControls : MonoBehaviour {
     public float moveSpeed = 1f;
@@ -37,6 +38,8 @@ public class PlayerControls : MonoBehaviour {
 
     private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e) {
         Flash(new Color(1, 1, 1, 1));
+
+        // Also add way to increase health and / or increase health bar size.
     }
 
     /*

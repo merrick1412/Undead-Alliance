@@ -12,6 +12,11 @@ public class ZombieAI : MonoBehaviour
     private float wanderTimer = 3f;    // Time interval for choosing a new wander target
     private float timer;
 
+    internal void SetDifficulty(int currentRound)
+    {
+        throw new System.NotImplementedException();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
