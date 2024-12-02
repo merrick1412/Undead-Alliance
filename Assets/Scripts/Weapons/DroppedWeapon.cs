@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class DroppedWeapon : MonoBehaviour
 {
-    public WeaponType weaponType;
-    public AmmoType ammoType;
-    public string weaponName;
-    public AudioClip gunshotSound;
-    public GameObject bulletPrefab;
-    public float bulletForce;
-    public float rateOfFire;
-    public bool Automatic;
-    public bool canBeSecondary;
-    public bool isAutomatic()
+    public Weapon weapon;
+
+    private void Start()
     {
-        return Automatic;
+
     }
-    
+
+    public void Initialize(Weapon weaponToDrop)
+    {
+        weapon.CopyStats(weaponToDrop); //when created, gives all the stuff to the dropped weapon
+        GetComponent<SpriteRenderer>().sprite = weaponToDrop.GetComponent<SpriteRenderer>().sprite;
+        GetComponent<AudioSource>().clip = weaponToDrop.GetComponent<AudioSource>().clip;
+    }
 }
