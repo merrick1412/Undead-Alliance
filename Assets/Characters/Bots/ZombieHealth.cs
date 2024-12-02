@@ -22,8 +22,11 @@ public class ZombieHealth : MonoBehaviour
 
     private void Die()
     {
-        // Add death animation and destroy the zombie
+        // You can add any additional death effects here, like a sound or animation
+
         Debug.Log("Zombie died!");
-        Destroy(gameObject);
+
+        // For object pooling, we would disable the zombie instead of destroying it
+        gameObject.SetActive(false);
     }
 }
