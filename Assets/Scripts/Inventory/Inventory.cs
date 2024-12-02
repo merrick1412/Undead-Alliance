@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
-        HandleWeaponPickup(); //keyboard input for inventory stuff
+        
 
     }
 
@@ -69,10 +69,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void HandleWeaponPickup()
-    {
-
-    }
+    
     private void EquipWeapon(Weapon weapon)
     {
         Debug.Log($"trying to equip {weapon.weaponName}");

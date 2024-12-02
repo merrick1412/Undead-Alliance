@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1321194997
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 472054282, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -105,5 +105,5 @@ MonoBehaviour:
   bulletForce: 50
   rateOfFire: 1
   Automatic: 0
-  StarterWeapon: 0
   MagazineSize: 5
+  playerInventoryController: {fileID: 0}

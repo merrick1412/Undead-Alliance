@@ -29,6 +29,7 @@ public class PlayerInventoryController : MonoBehaviour
                     
                     inventory.PickUpWeapon(nearbyDroppedWeapon);
                     WeaponNearby = false;
+                    Destroy(nearbyDroppedWeapon.gameObject);
                     nearbyDroppedWeapon = null;
                 }
             }
