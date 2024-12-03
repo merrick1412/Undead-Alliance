@@ -9,8 +9,9 @@ public class Shooting : MonoBehaviour
     public AudioSource audioSource;
     public Inventory inventory;
     public Weapon currentWeapon;
+    private float bulletForce;
 
-    public float bulletForce = 20f;
+    
     private float nextFireTime = 0f;
 
     // Use Start() to schedule the weapon initialization after a delay
@@ -19,7 +20,6 @@ public class Shooting : MonoBehaviour
         // Call InitializeWeapon after a small delay to ensure Inventory is set up
         Invoke("InitializeWeapon", 0.1f); // 0.1 seconds delay
     }
-
     // This method will run after the delay
     private void InitializeWeapon()
     {
@@ -35,6 +35,8 @@ public class Shooting : MonoBehaviour
 
         // Try to get the current weapon after Inventory initialization
         currentWeapon = inventory.GetComponent<Weapon>();
+        bulletForce = currentWeapon.bulletForce;
+        
 
         // Log if weapon is successfully assigned or not
         if (currentWeapon == null)
@@ -65,6 +67,7 @@ public class Shooting : MonoBehaviour
             return;
         }
         currentWeapon = inventory.GetCurrentWeapon();
+        bulletForce = currentWeapon.bulletForce;
         audioSource = currentWeapon.GetComponent<AudioSource>();
         // Handle shooting logic here
         if (currentWeapon.isAutomatic())

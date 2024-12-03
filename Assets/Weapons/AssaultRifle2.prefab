@@ -54,7 +54,7 @@ MonoBehaviour:
   bulletForce: 50
   rateOfFire: 7
   Automatic: 1
-  MagazineSize: 0
+  MagazineSize: 35
   playerInventoryController: {fileID: 0}
 --- !u!212 &-1887980184424919259
 SpriteRenderer:

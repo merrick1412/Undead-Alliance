@@ -106,7 +106,7 @@ MonoBehaviour:
   bulletForce: 50
   rateOfFire: 8
   Automatic: 1
-  MagazineSize: 0
+  MagazineSize: 30
   playerInventoryController: {fileID: 0}
 --- !u!82 &9159241194733521823
 AudioSource:
