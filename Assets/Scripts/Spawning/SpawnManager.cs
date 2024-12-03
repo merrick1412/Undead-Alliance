@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     private bool isRoundActive;
     private float roundTimer;
 
-    public UIManager uiManager;
+    //public UIManager uiManager;
 
     void Start()
     {
@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
     {
         isRoundActive = true;
         zombiesToSpawn = zombiesPerRound + (currentRound - 1) * 5;
-        uiManager.UpdateRoundText(currentRound); // Update the UI for the new round
+        //uiManager.UpdateRoundText(currentRound); // Update the UI for the new round
         StartCoroutine(SpawnZombies());
     }
 
@@ -71,7 +71,7 @@ public class SpawnManager : MonoBehaviour
         var zombieAI = zombieInstance.GetComponent<ZombieAI>();
         if (zombieAI != null)
         {
-            zombieAI.SetDifficulty(currentRound); // Adjust AI difficulty for this round
+            //zombieAI.SetDifficulty(currentRound); // Adjust AI difficulty for this round
         }
     }
 

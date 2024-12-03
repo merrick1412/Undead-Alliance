@@ -47,7 +47,7 @@ public class PlayerInventoryController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"triggered collision with ground object: {collision.gameObject.GetComponent<Weapon>().weaponName}");
+        
         newWeapon = collision.gameObject;
         nearbyDroppedWeapon = collision.gameObject.GetComponent<Weapon>();
         if (nearbyDroppedWeapon != null)
@@ -59,7 +59,7 @@ public class PlayerInventoryController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log($"triggered exit with ground object: {collision.gameObject.GetComponent<Weapon>().weaponName}");
+        
         nearbyDroppedWeapon = null;
         WeaponNearby = false;
     }
