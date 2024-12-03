@@ -36,6 +36,7 @@ public class Shooting : MonoBehaviour
         // Try to get the current weapon after Inventory initialization
         currentWeapon = inventory.GetComponent<Weapon>();
         bulletForce = currentWeapon.bulletForce;
+        bulletPrefab = currentWeapon.bulletPrefab;
         
 
         // Log if weapon is successfully assigned or not
@@ -68,6 +69,7 @@ public class Shooting : MonoBehaviour
         }
         currentWeapon = inventory.GetCurrentWeapon();
         bulletForce = currentWeapon.bulletForce;
+        bulletPrefab = currentWeapon.bulletPrefab;
         audioSource = currentWeapon.GetComponent<AudioSource>();
         // Handle shooting logic here
         if (currentWeapon.isAutomatic())

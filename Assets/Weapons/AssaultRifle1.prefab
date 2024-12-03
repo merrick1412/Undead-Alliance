@@ -103,7 +103,7 @@ MonoBehaviour:
   weaponName: SCAR-H
   gunshotSound: {fileID: 8300000, guid: cb7ce6688f4c8294ab74d6b31fcf3518, type: 3}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 50
+  bulletForce: 30
   rateOfFire: 8
   Automatic: 1
   MagazineSize: 30

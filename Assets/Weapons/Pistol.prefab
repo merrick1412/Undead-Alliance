@@ -103,7 +103,7 @@ MonoBehaviour:
   weaponName: Revolver
   gunshotSound: {fileID: 8300000, guid: 6659bd7e78543a745b37073a628bd9a7, type: 3}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 20
+  bulletForce: 15
   rateOfFire: 2
   Automatic: 0
   MagazineSize: 0

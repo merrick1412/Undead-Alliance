@@ -111,8 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 4148646661003501094}
-  damage: 1
+  damage: 2
   impactEffect: {fileID: 0}
+  piercing: 2
 --- !u!212 &933698710414697098
 SpriteRenderer:
   m_ObjectHideFlags: 0

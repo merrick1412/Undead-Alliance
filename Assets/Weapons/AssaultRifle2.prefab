@@ -51,7 +51,7 @@ MonoBehaviour:
   weaponName: AK-47
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 50
+  bulletForce: 30
   rateOfFire: 7
   Automatic: 1
   MagazineSize: 35

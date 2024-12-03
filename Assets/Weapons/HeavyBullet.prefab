@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1321194997
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 102559102, guid: 4c670da969f1dd84ca006c36b5d2caf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,6 +103,7 @@ MonoBehaviour:
   rb: {fileID: 3423866197700712685}
   damage: 5
   impactEffect: {fileID: 0}
+  piercing: 3
 --- !u!50 &3423866197700712685
 Rigidbody2D:
   serializedVersion: 4
