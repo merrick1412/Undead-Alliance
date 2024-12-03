@@ -7,8 +7,8 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public AudioSource audioSource;
-    private Inventory inventory;
-    private Weapon currentWeapon;
+    public Inventory inventory;
+    public Weapon currentWeapon;
 
     public float bulletForce = 20f;
     private float nextFireTime = 0f;
@@ -34,7 +34,7 @@ public class Shooting : MonoBehaviour
         }
 
         // Try to get the current weapon after Inventory initialization
-        currentWeapon = inventory.GetCurrentWeapon();
+        currentWeapon = inventory.GetComponent<Weapon>();
 
         // Log if weapon is successfully assigned or not
         if (currentWeapon == null)
@@ -59,12 +59,13 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        // If currentWeapon or audioSource is null, return early
-        if (currentWeapon == null || audioSource == null)
+        // If currentWeapon is null, return early
+        if (inventory.currentWeapon == null)
         {
             return;
         }
-
+        currentWeapon = inventory.GetCurrentWeapon();
+        audioSource = currentWeapon.GetComponent<AudioSource>();
         // Handle shooting logic here
         if (currentWeapon.isAutomatic())
         {
