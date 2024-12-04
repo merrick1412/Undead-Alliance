@@ -32,8 +32,6 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
-        
-
     }
 
     private void HandleWeaponSwitch()
