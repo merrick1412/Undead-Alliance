@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Shooting : MonoBehaviour
     public Inventory inventory;
     public Weapon currentWeapon;
     private float bulletForce;
+    private PlayerInventoryController playerInventoryController;
 
     
     private float nextFireTime = 0f;
@@ -19,6 +21,8 @@ public class Shooting : MonoBehaviour
     {
         // Call InitializeWeapon after a small delay to ensure Inventory is set up
         Invoke("InitializeWeapon", 0.1f); // 0.1 seconds delay
+        Invoke("InitializeInventoryController", 0.1f); // 0.1 seconds delay
+
     }
     // This method will run after the delay
     private void InitializeWeapon()
@@ -59,18 +63,39 @@ public class Shooting : MonoBehaviour
             }
         }
     }
+    private void InitializeInventoryController()
+    {
+        playerInventoryController = GetComponent<PlayerInventoryController>();
+    }
 
     void Update()
     {
         // If currentWeapon is null, return early
-        if (inventory.currentWeapon == null)
+        if (inventory.currentWeapon == null || inventory == null)
         {
             return;
         }
-        currentWeapon = inventory.GetCurrentWeapon();
+        if (currentWeapon != inventory.GetCurrentWeapon())
+        {
+            UpdateCurrentWeapon();
+            Debug.Log("updating weapon");
+        }
+         //nested loops are a good programming practice
+        Int32 remainingAmmo = playerInventoryController.AmmoBeingUsed();
+        if (remainingAmmo > 0)
+        {
+            HandleShootingLogic();
+        }
+    }
+    private void UpdateCurrentWeapon()
+    {
+        currentWeapon = inventory.GetCurrentWeapon(); //if weapon is switched, changes gun properly
         bulletForce = currentWeapon.bulletForce;
         bulletPrefab = currentWeapon.bulletPrefab;
         audioSource = currentWeapon.GetComponent<AudioSource>();
+    }
+    private void HandleShootingLogic()
+    {
         // Handle shooting logic here
         if (currentWeapon.isAutomatic())
         {

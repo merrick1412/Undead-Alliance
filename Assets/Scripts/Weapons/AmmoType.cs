@@ -7,6 +7,6 @@ public enum AmmoType
     Light,
     Medium,
     Heavy,
-    SciFi,
-    Explosive
+    Grenades
+    
 }
