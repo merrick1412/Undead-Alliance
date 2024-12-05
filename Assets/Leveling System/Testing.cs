@@ -8,10 +8,11 @@ public class Testing : MonoBehaviour {
     [SerializeField] private PlayerControls player;
 
     private void Awake() {
-        LevelSystem levelsystem = new LevelSystem();
-        levelWindow.SetLevelSystem(levelsystem);
-        player.SetLevelSystem(levelsystem);
+        LevelSystem levelSystem = new LevelSystem();
+        levelWindow.SetLevelSystem(levelSystem);
+        player.SetLevelSystem(levelSystem);
 
-        LevelSystemAnimated levelSystemAnimated = new LevelSystemAnimated(levelsystem);
+        LevelSystemAnimated levelSystemAnimated = new LevelSystemAnimated(levelSystem);
+        levelWindow.SetLevelSystemAnimated(levelSystemAnimated);
     }
 }
