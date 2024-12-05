@@ -12,43 +12,44 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public float bulletForce;
     public float rateOfFire;
     public bool Automatic;
-    public bool StarterWeapon = false;
     public int MagazineSize;
+    
+    public PlayerInventoryController playerInventoryController;
+
+    void Start()
+    {
+        
+    }
+
+    
+
+    void Update()
+    {
+       
+      
+    }
+
     public bool isAutomatic()
     {
-        return Automatic;       
+        return Automatic;
     }
+
     
-    public void Start()
-    {
-        if (StarterWeapon)
-        {              
-            gameObject.SetActive(true);        
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-    }
-    public void HideWeapon()
-    {
-        gameObject.SetActive(false);
-    }
-    public void ShowWeapon()
-    {
-        gameObject.SetActive(true);
-    }
-    public void CopyStats(Weapon other) //copy function
+    
+
+    public void CopyStats(Weapon other)
     {
         weaponName = other.weaponName;
         gunshotSound = other.gunshotSound;
-        weaponType= other.weaponType;
+        weaponType = other.weaponType;
         bulletForce = other.bulletForce;
         rateOfFire = other.rateOfFire;
         Automatic = other.Automatic;
-        StarterWeapon = other.StarterWeapon;
         MagazineSize = other.MagazineSize;
         bulletPrefab = other.bulletPrefab;
-        ammoType= other.ammoType;
+        ammoType = other.ammoType;
+        
     }
+
+
 }
