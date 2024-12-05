@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public float rateOfFire;
     public bool Automatic;
     public int MagazineSize;
+    public bool isShotgun = false;
+    public float shotgunSpreadAngle;
+    public Int32 shotgunPelletCount;
+    public float reloadTime;
     
     public PlayerInventoryController playerInventoryController;
 

@@ -45,13 +45,13 @@ GameObject:
   - component: {fileID: 3274845891648413449}
   - component: {fileID: -2734409866810185582}
   - component: {fileID: 9047706431436371021}
-  - component: {fileID: 7563748281173778279}
   - component: {fileID: 1532418836254015970}
   - component: {fileID: 6224772241320190218}
   - component: {fileID: 2465596517599718366}
   - component: {fileID: 4136592848772127698}
   - component: {fileID: 7450513355118299738}
   - component: {fileID: 5936180065980340556}
+  - component: {fileID: 8139305201714126184}
   m_Layer: 4
   m_Name: Player
   m_TagString: Player
@@ -74,7 +74,6 @@ Transform:
   m_Children:
   - {fileID: 7323185997760342953}
   - {fileID: 5932998694177811278}
-  - {fileID: 1332002058244308205}
   - {fileID: 897787918805531925}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,22 +245,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.122262, y: 0.01979389}
   m_EdgeRadius: 0
---- !u!114 &7563748281173778279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5329354375549478694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e31915640c8ab264f83254dc32925ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 7323185997760342953}
-  bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  audioSource: {fileID: 0}
-  bulletForce: 20
 --- !u!114 &1532418836254015970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 0}
-  weaponParent: {fileID: 0}
+  weaponParent: {fileID: 4935189562302176848}
+  weaponPos: {fileID: 897787918805531925}
   sidearm: {fileID: 6007818083455100667}
   primary: {fileID: 0}
   secondary: {fileID: 0}
@@ -308,8 +292,8 @@ MonoBehaviour:
   throwable: {fileID: 0}
   special: {fileID: 0}
   currentWeapon: {fileID: 0}
-  weaponDropPrefab: {fileID: 0}
-  playerInventoryController: {fileID: 0}
+  weaponDropPrefab: {fileID: 7404349596895665461, guid: 8505fcb3b63a0b947ad3f750be2119f0, type: 3}
+  playerInventoryController: {fileID: 7450513355118299738}
 --- !u!114 &4136592848772127698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +309,8 @@ MonoBehaviour:
   firePoint: {fileID: 7323185997760342953}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
   audioSource: {fileID: 0}
-  bulletForce: 20
+  inventory: {fileID: 0}
+  currentWeapon: {fileID: 0}
 --- !u!114 &7450513355118299738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +341,48 @@ MonoBehaviour:
   currentPlHealth: 100
   OnDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1532418836254015970}
+        m_TargetAssemblyTypeName: PlayerDamageIFrame, Assembly-CSharp
+        m_MethodName: StartIFrame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HealthBarUi, Assembly-CSharp
+        m_MethodName: UpdateHealthBar
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5936180065980340556}
+          m_ObjectArgumentAssemblyTypeName: PlayerHealthController, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8139305201714126184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5329354375549478694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d279203f4678a4e92956fafe0461f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightAmmoText: {fileID: 0}
+  mediumAmmoText: {fileID: 0}
+  heavyAmmoText: {fileID: 0}
+  grenadesAmmoText: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &8872809168414137457
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5450311055112732629, guid: c11414a236d11c246925f7d450e88dec, type: 3}
       propertyPath: m_Name
-      value: Gun
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 5450311055112732629, guid: c11414a236d11c246925f7d450e88dec, type: 3}
       propertyPath: m_Layer
@@ -482,77 +508,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d29fb3f6e5e40c4b8553dd946cca390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &4467917526097584106
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4935189562302176848}
-    m_Modifications:
-    - target: {fileID: 2598393798089029950, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2598393798089029950, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1321194997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.029
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.036
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.020576501
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3574757234177737297, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_Name
-      value: AssaultRifle1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9159241194733521823, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
---- !u!4 &1332002058244308205 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3205722366461371143, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
-  m_PrefabInstance: {fileID: 4467917526097584106}
-  m_PrefabAsset: {fileID: 0}

@@ -102,7 +102,17 @@ public class Shooting : MonoBehaviour
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
             {
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
-                Shoot();
+                if (currentWeapon.isShotgun) //does this if its a shotgun
+                    ShootShotgun();
+                else
+                    Shoot();
+                Int32 bulCount;
+                if (currentWeapon.isShotgun) //shoots multiple if its a shotgun
+                    bulCount = currentWeapon.shotgunPelletCount;
+                else
+                    bulCount = 1;
+                UseAmmo(bulCount);
+                
                 if (!audioSource.isPlaying) // play sound when button is held for automatic
                 {
                     audioSource.Play();
@@ -118,7 +128,16 @@ public class Shooting : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
             {
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
-                Shoot();
+                if (currentWeapon.isShotgun) //does this if its a shotgun
+                    ShootShotgun();
+                else
+                    Shoot();
+                Int32 bulCount;
+                if (currentWeapon.isShotgun) //shoots multiple if its a shotgun
+                    bulCount = currentWeapon.shotgunPelletCount;
+                else
+                    bulCount = 1;
+                UseAmmo(bulCount);
             }
         }
     }
@@ -133,5 +152,29 @@ public class Shooting : MonoBehaviour
         bullet.layer = 10;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+    }
+
+    private void ShootShotgun()
+    {
+        Int32 shotgunPelletCount = currentWeapon.shotgunPelletCount;
+        float spreadAngle = currentWeapon.shotgunSpreadAngle;
+        for (int i = 0; i < shotgunPelletCount; i++)
+        {
+            float angle = UnityEngine.Random.Range(-spreadAngle / 2, spreadAngle / 2);
+            Quaternion rotation = Quaternion.Euler(0, 0, firePoint.eulerAngles.z + angle);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
+            bullet.layer = 10;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+        }
+
+        if (!currentWeapon.Automatic)
+        {
+            audioSource.PlayOneShot(currentWeapon.gunshotSound);
+        }
+    }
+    private void UseAmmo(Int32 amount)
+    {
+        playerInventoryController.GetAmmoBeingUsed().useAmmo(amount);
     }
 }

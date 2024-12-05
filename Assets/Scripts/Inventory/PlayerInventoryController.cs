@@ -74,6 +74,15 @@ public class PlayerInventoryController : MonoBehaviour
          * this finds the gun equipped, gets the type of ammo it uses, then returns how much of it you have
          */
     }
-    // Update is called once per frame
+    public Ammo GetAmmoBeingUsed()
+    {
+        AmmoType ammoType = inventory.currentWeapon.ammoType;
+        List<Ammo> ammoList = inventory.returnAmmo();
+        return ammoList.Find(ammo => ammo.GetType() == ammoType);
+        /*
+         * this finds the gun equipped, and returns the ammo it uses from the list
+         */
+    }
+    
 
 }

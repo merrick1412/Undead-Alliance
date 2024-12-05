@@ -22,6 +22,6 @@ public class Ammo : MonoBehaviour
         this.type = type;
         this.amount = amount;
     }
-    
-
+    public void useAmmo(Int32 amount)
+    { this.amount = this.amount - amount; }
 }

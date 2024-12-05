@@ -9,7 +9,7 @@ public class PlayerAmmoController : MonoBehaviour
     public TextMeshProUGUI mediumAmmoText;
     public TextMeshProUGUI heavyAmmoText;
     public TextMeshProUGUI grenadesAmmoText;
-    public Inventory inventory;
+    private Inventory inventory;
     void Start()
     {
         inventory= GetComponent<Inventory>();
@@ -20,6 +20,12 @@ public class PlayerAmmoController : MonoBehaviour
     {
         if (inventory == null) return;
 
+        UpdateAmmoUI(AmmoType.Light);
+        UpdateAmmoUI(AmmoType.Medium);
+        UpdateAmmoUI(AmmoType.Heavy);
+        UpdateAmmoUI(AmmoType.Grenades);
+
+
     }
     private void UpdateAmmoUI(AmmoType ammoType)
     {
@@ -28,8 +34,17 @@ public class PlayerAmmoController : MonoBehaviour
         switch (ammoType)
         {           
 
-            //case AmmoType.Light: lightAmmoText.text = "Light Ammo: " + ammo.GetAmount();
-
+            case AmmoType.Light: lightAmmoText.text = "Light Ammo: " + ammo.GetAmount();
+                break;
+            case AmmoType.Medium:
+                mediumAmmoText.text = "Medium Ammo: " + ammo.GetAmount();
+                break;
+            case AmmoType.Heavy:
+               heavyAmmoText.text = "Heavy Ammo: " + ammo.GetAmount();
+                break;
+                case AmmoType.Grenades:
+                grenadesAmmoText.text = "Grenades: " + ammo.GetAmount();
+                break;           
         }
     }
 }
