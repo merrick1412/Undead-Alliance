@@ -1,61 +1,51 @@
 using UnityEngine;
-using System.Collections;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    public GameObject zombiePrefab;          // Zombie prefab to spawn
-    public Transform[] spawnPoints;          // Spawn points
-    public int initialZombies = 5;           // Zombies at the start
-    public float spawnRate = 2f;             // Time between each spawn
-    public int round = 1;                    // Current round
-    public Camera mainCamera;                // Main camera reference
-
-    private int zombiesToSpawn;              // Zombies per round
-    private int zombiesRemaining;            // Zombies left to spawn this round
+    public GameObject zombiePrefab;     // The zombie prefab to spawn
+    public Vector2 spawnAreaSize = new Vector2(20f, 20f); // Width and height of the spawn area
+    public Vector3 spawnAreaCenter = Vector3.zero;       // Center of the spawn area
+    public float spawnRate = 5f;        // Time in seconds between spawns
+    public int maxZombies = 10;         // Maximum number of zombies allowed in the game at once
+    private int currentZombieCount = 0; // Tracks how many zombies are in the game
 
     void Start()
     {
-        StartNewRound();
+        InvokeRepeating("SpawnZombie", spawnRate, spawnRate);  // Repeatedly call the SpawnZombie method
     }
 
-    void StartNewRound()
+    void SpawnZombie()
     {
-        zombiesToSpawn = initialZombies + (round - 1) * 2; // Increase zombies each round
-        zombiesRemaining = zombiesToSpawn;
-        StartCoroutine(SpawnZombies());
-    }
-
-    IEnumerator SpawnZombies()
-    {
-        while (zombiesRemaining > 0)
+        if (currentZombieCount < maxZombies)
         {
-            Transform spawnPoint = GetValidSpawnPoint();
-            if (spawnPoint != null)
-            {
-                Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity);
-                zombiesRemaining--;
-            }
-            yield return new WaitForSeconds(spawnRate);
-        }
+            // Generate a random position within the spawn area
+            Vector3 randomPosition = GetRandomSpawnPosition();
 
-        // Wait a few seconds before starting the next round
-        yield return new WaitForSeconds(5f);
-        round++;
-        StartNewRound();
+            // Instantiate a new zombie at the random position
+            Instantiate(zombiePrefab, randomPosition, Quaternion.identity);
+
+            // Increment the zombie count when a new one spawns
+            currentZombieCount++;
+        }
     }
 
-    Transform GetValidSpawnPoint()
+    Vector3 GetRandomSpawnPosition()
     {
-        foreach (Transform spawnPoint in spawnPoints)
-        {
-            Vector3 screenPoint = mainCamera.WorldToViewportPoint(spawnPoint.position);
-            bool isInCameraView = screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        float randomX = Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2);
+        float randomY = spawnAreaCenter.y; // Fixed Y level for ground
+        return new Vector3(spawnAreaCenter.x + randomX, randomY, spawnAreaCenter.z);
+    }
 
-            if (!isInCameraView)
-            {
-                return spawnPoint;
-            }
-        }
-        return null;
+
+    public void OnZombieDeath()
+    {
+        currentZombieCount--;   // Decrement zombie count when a zombie dies
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Visualize the spawn area in the editor
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(spawnAreaCenter, new Vector3(spawnAreaSize.x, 1f, spawnAreaSize.y));
     }
 }
