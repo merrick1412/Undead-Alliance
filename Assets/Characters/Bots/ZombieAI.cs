@@ -1,57 +1,87 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieAI : MonoBehaviour
 {
-    public Transform player;           // Reference to the player
-    public float speed = 2f;           // Movement speed
-    public float chaseRange = 20f;     // Distance within which zombies chase
-    public float attackRange = 2f;     // Distance for attack
-    private Rigidbody2D rb;            // Rigidbody2D for 2D movement
-    private Vector2 wanderTarget;      // Target for wandering behavior
-    private float wanderRadius = 5f;   // Radius for wandering
-    private float wanderTimer = 3f;    // Time interval for choosing a new wander target
-    private float timer;
+    public Transform player;        // Reference to the player's transform
+    private NavMeshAgent navAgent;  // NavMeshAgent for pathfinding
 
-    void Start()
+    public float chaseRange = 20f;  // Range in which zombie will start chasing
+    public float attackRange = 2f;  // Range in which zombie will attack
+    public int attackDamage = 10;   // Damage dealt by the zombie
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        timer = wanderTimer;
+        navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent == null)
+        {
+            Debug.LogError("NavMeshAgent component is missing! Disabling ZombieAI.");
+            enabled = false; // Disable the script if NavMeshAgent is missing
+        }
+
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError("No GameObject with the 'Player' tag found! Please ensure your player has the correct tag.");
+            }
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (navAgent == null || player == null)
+            return; // Skip Update if critical components are missing
 
-        if (distanceToPlayer <= attackRange)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= chaseRange && distanceToPlayer > attackRange)
         {
-            // Stop moving to "attack" the player
-            rb.velocity = Vector2.zero;
+            // If the player is within chase range but outside attack range
+            ChasePlayer();
         }
-        else if (distanceToPlayer <= chaseRange)
+        else if (distanceToPlayer <= attackRange)
         {
-            // Chase the player
-            Vector2 direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * speed;
+            // If the player is within attack range
+            AttackPlayer();
         }
         else
         {
-            // Wander when the player is out of chase range
-            Wander();
+            // If the player is outside the chase range
+            Idle();
         }
     }
 
-    void Wander()
+    private void ChasePlayer()
     {
-        timer += Time.deltaTime;
+        navAgent.SetDestination(player.position); // Set player as destination for NavMeshAgent
+    }
 
-        if (timer >= wanderTimer)
+    private void AttackPlayer()
+    {
+        Debug.Log("Zombie is attacking the player!");
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
         {
-            Vector2 randomDirection = Random.insideUnitCircle.normalized * wanderRadius;
-            wanderTarget = (Vector2)transform.position + randomDirection;
-            timer = 0;
+            playerHealth.TakeDamage(attackDamage); // Reduce player's health
         }
+    }
 
-        Vector2 direction = (wanderTarget - (Vector2)transform.position).normalized;
-        rb.velocity = direction * speed * 0.5f; // Wander at a slower speed
+    private void Idle()
+    {
+        navAgent.SetDestination(transform.position); // Idle, no movement
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
