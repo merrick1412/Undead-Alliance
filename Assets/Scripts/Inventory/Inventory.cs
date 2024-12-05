@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
+        HandleReload();
     }
     private void InitializeAmmo()
     {
@@ -94,7 +95,13 @@ public class Inventory : MonoBehaviour
             DropWeapon(currentWeapon);
         }
     }
-
+    private void HandleReload()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) //reload
+        {
+            currentWeapon.Reload();
+        }
+    }
     
     private void EquipWeapon(Weapon weapon)
     {

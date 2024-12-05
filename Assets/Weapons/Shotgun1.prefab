@@ -107,10 +107,12 @@ MonoBehaviour:
   rateOfFire: 1
   Automatic: 0
   MagazineSize: 8
+  MagazineCount: 8
   isShotgun: 1
   shotgunSpreadAngle: 50
   shotgunPelletCount: 8
   reloadTime: 8
+  isReloading: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &-7725322742382873949
 AudioSource:

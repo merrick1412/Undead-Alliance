@@ -83,5 +83,9 @@ public class Weapon : MonoBehaviour //parent class for weapons
     {
         return playerInventoryController.AmmoBeingUsed();
     }
-
+    public void useAmmo()
+    {
+        MagazineCount = MagazineCount - 1;
+    }
+    
 }

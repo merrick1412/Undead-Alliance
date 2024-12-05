@@ -82,9 +82,12 @@ public class Shooting : MonoBehaviour
         }
          //nested loops are a good programming practice
         Int32 remainingAmmo = playerInventoryController.AmmoBeingUsed();
-        if (remainingAmmo > 0)
+        if (currentWeapon.MagazineCount > 0 && !currentWeapon.isReloading)
         {
-            HandleShootingLogic();
+            if (remainingAmmo > 0)
+            {
+                HandleShootingLogic();
+            }
         }
     }
     private void UpdateCurrentWeapon()
@@ -184,5 +187,6 @@ public class Shooting : MonoBehaviour
     private void UseAmmo(Int32 amount)
     {
         playerInventoryController.GetAmmoBeingUsed().useAmmo(amount);
+        currentWeapon.useAmmo();
     }
 }

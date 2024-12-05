@@ -9,6 +9,7 @@ public class PlayerAmmoController : MonoBehaviour
     public TextMeshProUGUI mediumAmmoText;
     public TextMeshProUGUI heavyAmmoText;
     public TextMeshProUGUI grenadesAmmoText;
+    public TextMeshProUGUI magazineCount;
     private Inventory inventory;
     void Start()
     {
@@ -45,6 +46,10 @@ public class PlayerAmmoController : MonoBehaviour
                 case AmmoType.Grenades:
                 grenadesAmmoText.text = "Grenades: " + ammo.GetAmount();
                 break;           
+        }
+        if (inventory.currentWeapon != null)
+        {
+            magazineCount.text = inventory.currentWeapon.weaponName + ": " + inventory.currentWeapon.MagazineCount; //
         }
     }
 }
