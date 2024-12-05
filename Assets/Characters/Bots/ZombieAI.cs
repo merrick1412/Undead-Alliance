@@ -66,9 +66,3 @@ public class ZombieAI : MonoBehaviour {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
-    public void SetDifficulty(int difficulty)    
-    {
-        throw new NotImplementedException();
-    }
-}
