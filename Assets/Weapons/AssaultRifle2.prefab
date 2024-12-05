@@ -55,6 +55,10 @@ MonoBehaviour:
   rateOfFire: 7
   Automatic: 1
   MagazineSize: 35
+  isShotgun: 0
+  shotgunSpreadAngle: 0
+  shotgunPelletCount: 0
+  reloadTime: 4.5
   playerInventoryController: {fileID: 0}
 --- !u!212 &-1887980184424919259
 SpriteRenderer:
