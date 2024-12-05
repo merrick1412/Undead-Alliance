@@ -835,6 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelWindow: {fileID: 667475361}
+  player: {fileID: 0}
 --- !u!4 &773470958
 Transform:
   m_ObjectHideFlags: 0

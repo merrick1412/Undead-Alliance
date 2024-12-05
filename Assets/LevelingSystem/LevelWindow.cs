@@ -1,11 +1,23 @@
-using CodeMonkey.Utils;
+﻿/* 
+    ------------------- Code Monkey -------------------
+
+    Thank you for downloading this package
+    I hope you find it useful in your projects
+    If you have any questions let me know
+    Cheers!
+
+               unitycodemonkey.com
+    --------------------------------------------------
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CodeMonkey.Utils;
 
 public class LevelWindow : MonoBehaviour {
-    
+
     private Text levelText;
     private Image experienceBarImage;
     private LevelSystem levelSystem;
@@ -14,10 +26,10 @@ public class LevelWindow : MonoBehaviour {
     private void Awake() {
         levelText = transform.Find("levelText").GetComponent<Text>();
         experienceBarImage = transform.Find("experienceBar").Find("bar").GetComponent<Image>();
-
-        transform.Find("xp-5-button").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(5);
-        transform.Find("xp-50-button").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(50);
-        transform.Find("xp-500-button").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(500);
+        
+        transform.Find("experience5Btn").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(5);
+        transform.Find("experience50Btn").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(50);
+        transform.Find("experience500Btn").GetComponent<Button_UI>().ClickFunc = () => levelSystem.AddExperience(500);
     }
 
     private void SetExperienceBarSize(float experienceNormalized) {

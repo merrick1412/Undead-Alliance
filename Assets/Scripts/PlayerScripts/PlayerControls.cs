@@ -30,23 +30,24 @@ public class PlayerControls : MonoBehaviour {
         cam.transform.rotation = Quaternion.identity;
     }
 
-    public void SetLevelSystem(LevelSystem levelSystem) {
-        this.levelSystem = levelSystem;
+    public void SetLevelSystemAnimated(LevelSystemAnimated levelSystemAnimated) {
+        this.levelSystemAnimated = levelSystemAnimated;
 
-        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+        levelSystemAnimated.OnLevelChanged += LevelSystem_OnLevelChanged;
     }
 
-    private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e) {
+    private void LevelSystem_OnLevelChanged(object sender, EventArgs e) {
+        SpawnParticleEffect();
         Flash(new Color(1, 1, 1, 1));
 
-        // Also add way to increase health and / or increase health bar size.
+        // Update health here too (or somewhere else)
     }
 
-    /*
+
     private void SpawnParticleEffect() {
         Transform effect = Instantiate(pfEffect, transform);
         FunctionTimer.Create(() => Destroy(effect.gameObject), 3f);
-    }*/
+    }
 
     private void Flash(Color flashColor) {
         materialTintColor = flashColor;
