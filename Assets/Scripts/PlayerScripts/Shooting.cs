@@ -152,20 +152,28 @@ public class Shooting : MonoBehaviour
         bullet.layer = 10;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        Destroy(bullet, 5.0f);
     }
 
     private void ShootShotgun()
     {
         Int32 shotgunPelletCount = currentWeapon.shotgunPelletCount;
         float spreadAngle = currentWeapon.shotgunSpreadAngle;
+
+        Rigidbody2D playerRB = playerInventoryController.GetComponent<Rigidbody2D>();
+        
         for (int i = 0; i < shotgunPelletCount; i++)
         {
+            
             float angle = UnityEngine.Random.Range(-spreadAngle / 2, spreadAngle / 2);
             Quaternion rotation = Quaternion.Euler(0, 0, firePoint.eulerAngles.z + angle);
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             bullet.layer = 10;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            
+            
+            
         }
 
         if (!currentWeapon.Automatic)

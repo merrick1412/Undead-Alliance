@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour //parent class for weapons
 
     void Start()
     {
-        
+        playerInventoryController= GetComponentInParent<PlayerInventoryController>();
     }
 
     
