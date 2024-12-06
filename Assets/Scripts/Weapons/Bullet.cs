@@ -19,11 +19,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>(); //makes sure bullet hit enemy
-        if (enemy != null && piercing != pierceCounter){
-            pierceCounter++;
-            enemy.TakeDamage(damage);
-            }
+        //Enemy enemy = hitInfo.GetComponent<Enemy>(); //makes sure bullet hit enemy
+        //if (enemy != null && piercing != pierceCounter){
+        //    pierceCounter++;
+        //    enemy.TakeDamage(damage);
+         //   }
         
     }
 
