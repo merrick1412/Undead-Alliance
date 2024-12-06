@@ -10,9 +10,9 @@ public class Testing : MonoBehaviour {
     private void Awake() {
         LevelSystem levelSystem = new LevelSystem();
         levelWindow.SetLevelSystem(levelSystem);
-        player.SetLevelSystem(levelSystem);
 
         LevelSystemAnimated levelSystemAnimated = new LevelSystemAnimated(levelSystem);
+        levelWindow.SetLevelSystemAnimated(levelSystemAnimated);
         player.SetLevelSystemAnimated(levelSystemAnimated);
     }
 }

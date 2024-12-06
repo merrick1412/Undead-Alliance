@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using CodeMonkey.Utils;
 using HealthBarUi;
+using System;
 
 public class PlayerControls : MonoBehaviour {
     public float moveSpeed = 1f;
@@ -15,7 +16,7 @@ public class PlayerControls : MonoBehaviour {
 
     private Material material;
     private Color materialTintColor;
-    private LevelSystem levelSystem;
+    private LevelSystemAnimated levelSystemAnimated;
 
     // Start is called before the first frame update
     void Start() {
@@ -37,16 +38,9 @@ public class PlayerControls : MonoBehaviour {
     }
 
     private void LevelSystem_OnLevelChanged(object sender, EventArgs e) {
-        SpawnParticleEffect();
         Flash(new Color(1, 1, 1, 1));
 
         // Update health here too (or somewhere else)
-    }
-
-
-    private void SpawnParticleEffect() {
-        Transform effect = Instantiate(pfEffect, transform);
-        FunctionTimer.Create(() => Destroy(effect.gameObject), 3f);
     }
 
     private void Flash(Color flashColor) {

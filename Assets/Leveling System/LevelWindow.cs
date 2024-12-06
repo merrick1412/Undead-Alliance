@@ -40,7 +40,7 @@ public class LevelWindow : MonoBehaviour {
         SetLevelNumber(levelSystemAnimated.GetLevelNumber());
         SetExperienceBarSize(levelSystemAnimated.GetExperienceNormalized());
 
-        // Surbscribe to the changed events
+        // Subscribe to the changed events
         levelSystemAnimated.OnExperienceChanged += LevelSystemAnimated_OnExperienceChanged;
         levelSystemAnimated.OnLevelChanged += LevelSystemAnimated_OnLevelChanged;
     }
