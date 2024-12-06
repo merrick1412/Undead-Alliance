@@ -42,7 +42,8 @@ public class Weapon : MonoBehaviour //parent class for weapons
     }
 
     public void Reload()
-    {        
+    {
+        
         isReloading = true;
         StartCoroutine(ChangeBoolAfterDelay(reloadTime));               
     }
