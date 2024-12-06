@@ -42,20 +42,22 @@ public class Weapon : MonoBehaviour //parent class for weapons
     }
 
     public void Reload()
-    {
+    {        
         isReloading = true;
-        StartCoroutine(ChangeBoolAfterDelay(reloadTime));
-        if (MagazineSize > getRemainingBullets())
-        {
-            MagazineCount = getRemainingBullets();
-            return;
-        }
-        MagazineCount = MagazineSize;
-        
+        StartCoroutine(ChangeBoolAfterDelay(reloadTime));               
     }
     private IEnumerator ChangeBoolAfterDelay(float seconds) //changes reloading to false after reload time
     {
         yield return new WaitForSeconds(seconds);
+        if (MagazineSize > getRemainingBullets())
+        {
+            MagazineCount = getRemainingBullets();
+            
+        }
+        if (MagazineSize < getRemainingBullets())
+        {
+            MagazineCount = MagazineSize;
+        }       
         isReloading = false;
         Debug.Log("finished reload");
     }

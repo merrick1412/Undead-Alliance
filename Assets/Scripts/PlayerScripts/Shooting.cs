@@ -82,7 +82,7 @@ public class Shooting : MonoBehaviour
         }
          //nested loops are a good programming practice
         Int32 remainingAmmo = playerInventoryController.AmmoBeingUsed();
-        if (currentWeapon.MagazineCount > 0 && !currentWeapon.isReloading)
+        if (!currentWeapon.isReloading)
         {
             if (remainingAmmo > 0)
             {
@@ -104,6 +104,11 @@ public class Shooting : MonoBehaviour
         {
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
             {
+                if (currentWeapon.MagazineCount == 0)
+                {
+                    currentWeapon.Reload();
+                    return;
+                }
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
                 if (currentWeapon.isShotgun) //does this if its a shotgun
                     ShootShotgun();
@@ -130,6 +135,11 @@ public class Shooting : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
             {
+                if (currentWeapon.MagazineCount == 0)
+                {
+                    currentWeapon.Reload();
+                    return;
+                }
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
                 if (currentWeapon.isShotgun) //does this if its a shotgun
                     ShootShotgun();
@@ -164,7 +174,10 @@ public class Shooting : MonoBehaviour
         float spreadAngle = currentWeapon.shotgunSpreadAngle;
 
         Rigidbody2D playerRB = playerInventoryController.GetComponent<Rigidbody2D>();
-        
+        if (shotgunPelletCount > playerInventoryController.AmmoBeingUsed())
+        {
+            return; //if there isnt enough bullets to shoot all the pellets, returns
+        }
         for (int i = 0; i < shotgunPelletCount; i++)
         {
             
@@ -173,7 +186,7 @@ public class Shooting : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             bullet.layer = 10;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse); //math to shoot the shotgun bullets in a spread
             
             
             
