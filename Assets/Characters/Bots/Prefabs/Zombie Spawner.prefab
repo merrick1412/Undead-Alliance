@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc141a3887e3b2f468d011b0ec93fdd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 3604863785331745336, guid: 8548740e789756e438147c9172838b1a, type: 3}
-  spawnPoints: []
-  initialZombies: 10
+  zombiePrefab: {fileID: 8761862011298152871, guid: 1960c464ee3ee974bb1e770299ed58bc, type: 3}
+  spawnAreaSize: {x: 20, y: 20}
+  spawnAreaCenter: {x: 0, y: 0, z: 0}
   spawnRate: 2
-  round: 1
-  mainCamera: {fileID: 0}
+  maxZombies: 10
