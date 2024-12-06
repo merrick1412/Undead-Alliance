@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public int damage = 1;// damage can be multiplied by gun
     public GameObject impactEffect; //later can add blood/debris on impact
+    private int pierceCounter = 0;
+    public int piercing;
     
     void Start()
     {
@@ -18,7 +20,8 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>(); //makes sure bullet hit enemy
-        if (enemy != null){
+        if (enemy != null && piercing != pierceCounter){
+            pierceCounter++;
             enemy.TakeDamage(damage);
             }
         

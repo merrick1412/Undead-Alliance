@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,10 @@ public class Shooting : MonoBehaviour
     public AudioSource audioSource;
     public Inventory inventory;
     public Weapon currentWeapon;
+    private float bulletForce;
+    private PlayerInventoryController playerInventoryController;
 
-    public float bulletForce = 20f;
+    
     private float nextFireTime = 0f;
 
     // Use Start() to schedule the weapon initialization after a delay
@@ -18,8 +21,9 @@ public class Shooting : MonoBehaviour
     {
         // Call InitializeWeapon after a small delay to ensure Inventory is set up
         Invoke("InitializeWeapon", 0.1f); // 0.1 seconds delay
-    }
+        Invoke("InitializeInventoryController", 0.1f); // 0.1 seconds delay
 
+    }
     // This method will run after the delay
     private void InitializeWeapon()
     {
@@ -35,6 +39,9 @@ public class Shooting : MonoBehaviour
 
         // Try to get the current weapon after Inventory initialization
         currentWeapon = inventory.GetComponent<Weapon>();
+        bulletForce = currentWeapon.bulletForce;
+        bulletPrefab = currentWeapon.bulletPrefab;
+        
 
         // Log if weapon is successfully assigned or not
         if (currentWeapon == null)
@@ -56,23 +63,64 @@ public class Shooting : MonoBehaviour
             }
         }
     }
+    private void InitializeInventoryController()
+    {
+        playerInventoryController = GetComponent<PlayerInventoryController>();
+    }
 
     void Update()
     {
         // If currentWeapon is null, return early
-        if (inventory.currentWeapon == null)
+        if (inventory.currentWeapon == null || inventory == null)
         {
             return;
         }
-        currentWeapon = inventory.GetCurrentWeapon();
+        if (currentWeapon != inventory.GetCurrentWeapon())
+        {
+            UpdateCurrentWeapon();
+            Debug.Log("updating weapon");
+        }
+         //nested loops are a good programming practice
+        Int32 remainingAmmo = playerInventoryController.AmmoBeingUsed();
+        if (!currentWeapon.isReloading)
+        {
+            if (remainingAmmo > 0)
+            {
+                HandleShootingLogic();
+            }
+        }
+    }
+    private void UpdateCurrentWeapon()
+    {
+        currentWeapon = inventory.GetCurrentWeapon(); //if weapon is switched, changes gun properly
+        bulletForce = currentWeapon.bulletForce;
+        bulletPrefab = currentWeapon.bulletPrefab;
         audioSource = currentWeapon.GetComponent<AudioSource>();
+    }
+    private void HandleShootingLogic()
+    {
         // Handle shooting logic here
         if (currentWeapon.isAutomatic())
         {
             if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
             {
+                if (currentWeapon.MagazineCount == 0)
+                {
+                    currentWeapon.Reload();
+                    return;
+                }
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
-                Shoot();
+                if (currentWeapon.isShotgun) //does this if its a shotgun
+                    ShootShotgun();
+                else
+                    Shoot();
+                Int32 bulCount;
+                if (currentWeapon.isShotgun) //shoots multiple if its a shotgun
+                    bulCount = currentWeapon.shotgunPelletCount;
+                else
+                    bulCount = 1;
+                UseAmmo(bulCount);
+                
                 if (!audioSource.isPlaying) // play sound when button is held for automatic
                 {
                     audioSource.Play();
@@ -87,8 +135,22 @@ public class Shooting : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
             {
+                if (currentWeapon.MagazineCount == 0)
+                {
+                    currentWeapon.Reload();
+                    return;
+                }
                 nextFireTime = Time.time + 1f / currentWeapon.rateOfFire; // calculates when the gun can shoot again
-                Shoot();
+                if (currentWeapon.isShotgun) //does this if its a shotgun
+                    ShootShotgun();
+                else
+                    Shoot();
+                Int32 bulCount;
+                if (currentWeapon.isShotgun) //shoots multiple if its a shotgun
+                    bulCount = currentWeapon.shotgunPelletCount;
+                else
+                    bulCount = 1;
+                UseAmmo(bulCount);
             }
         }
     }
@@ -103,5 +165,41 @@ public class Shooting : MonoBehaviour
         bullet.layer = 10;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        Destroy(bullet, 5.0f);
+    }
+
+    private void ShootShotgun()
+    {
+        Int32 shotgunPelletCount = currentWeapon.shotgunPelletCount;
+        float spreadAngle = currentWeapon.shotgunSpreadAngle;
+
+        Rigidbody2D playerRB = playerInventoryController.GetComponent<Rigidbody2D>();
+        if (shotgunPelletCount > playerInventoryController.AmmoBeingUsed())
+        {
+            return; //if there isnt enough bullets to shoot all the pellets, returns
+        }
+        for (int i = 0; i < shotgunPelletCount; i++)
+        {
+            
+            float angle = UnityEngine.Random.Range(-spreadAngle / 2, spreadAngle / 2);
+            Quaternion rotation = Quaternion.Euler(0, 0, firePoint.eulerAngles.z + angle);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
+            bullet.layer = 10;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse); //math to shoot the shotgun bullets in a spread
+            
+            
+            
+        }
+
+        if (!currentWeapon.Automatic)
+        {
+            audioSource.PlayOneShot(currentWeapon.gunshotSound);
+        }
+    }
+    private void UseAmmo(Int32 amount)
+    {
+        playerInventoryController.GetAmmoBeingUsed().useAmmo(amount);
+        currentWeapon.useAmmo();
     }
 }

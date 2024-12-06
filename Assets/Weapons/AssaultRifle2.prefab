@@ -51,10 +51,16 @@ MonoBehaviour:
   weaponName: AK-47
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 50
+  bulletForce: 30
   rateOfFire: 7
   Automatic: 1
-  MagazineSize: 0
+  MagazineSize: 35
+  MagazineCount: 35
+  isShotgun: 0
+  shotgunSpreadAngle: 0
+  shotgunPelletCount: 0
+  reloadTime: 4.5
+  isReloading: 0
   playerInventoryController: {fileID: 0}
 --- !u!212 &-1887980184424919259
 SpriteRenderer:
@@ -119,7 +125,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

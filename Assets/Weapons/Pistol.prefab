@@ -103,10 +103,16 @@ MonoBehaviour:
   weaponName: Revolver
   gunshotSound: {fileID: 8300000, guid: 6659bd7e78543a745b37073a628bd9a7, type: 3}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 20
+  bulletForce: 15
   rateOfFire: 2
   Automatic: 0
-  MagazineSize: 0
+  MagazineSize: 6
+  MagazineCount: 6
+  isShotgun: 0
+  shotgunSpreadAngle: 0
+  shotgunPelletCount: 0
+  reloadTime: 4
+  isReloading: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &-4041404172435543084
 AudioSource:
@@ -119,7 +125,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6659bd7e78543a745b37073a628bd9a7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

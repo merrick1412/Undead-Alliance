@@ -17,11 +17,13 @@ public class Inventory : MonoBehaviour
     public Weapon currentWeapon; //active weapon
     public GameObject weaponDropPrefab; //assigns the prefab for creating dropped weapons
     public PlayerInventoryController playerInventoryController; //interfaces between inventory and gameworld
+    private List<Ammo> ammoList = new List<Ammo>(); //a list of all the ammo
 
 
     void Start()
     {
         EquipWeapon(sidearm);
+        InitializeAmmo();
     }
     public Weapon GetCurrentWeapon()
     {
@@ -32,9 +34,34 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         HandleWeaponSwitch(); //split these up to remove clutter, they handle
-        
-
+        HandleReload();
     }
+    private void InitializeAmmo()
+    {
+        GameObject lightAmmoObject = new GameObject("LightAmmo"); //initialize the ammo
+        Ammo lightAmmo = lightAmmoObject.AddComponent<Ammo>();
+        lightAmmo.Initialize(AmmoType.Light, 100);
+        ammoList.Add(lightAmmo);
+
+        GameObject mediumAmmoObject = new GameObject("MediumAmmo");
+        Ammo mediumAmmo = mediumAmmoObject.AddComponent<Ammo>();
+        mediumAmmo.Initialize(AmmoType.Medium, 0);
+        ammoList.Add(mediumAmmo);
+
+        GameObject heavyAmmoObject = new GameObject("HeavyAmmo");
+        Ammo heavyAmmo = heavyAmmoObject.AddComponent<Ammo>();
+        heavyAmmo.Initialize(AmmoType.Heavy, 0);
+        ammoList.Add(heavyAmmo);
+
+        GameObject grenadesAmmoObject = new GameObject("GrenadesAmmo");
+        Ammo grenadesAmmo = grenadesAmmoObject.AddComponent<Ammo>();
+        grenadesAmmo.Initialize(AmmoType.Grenades, 0);
+        ammoList.Add(grenadesAmmo);
+    }
+    public List<Ammo> returnAmmo()
+    {
+        return ammoList;
+    } 
 
     private void HandleWeaponSwitch()
     {
@@ -68,7 +95,13 @@ public class Inventory : MonoBehaviour
             DropWeapon(currentWeapon);
         }
     }
-
+    private void HandleReload()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) //reload
+        {
+            currentWeapon.Reload();
+        }
+    }
     
     private void EquipWeapon(Weapon weapon)
     {
