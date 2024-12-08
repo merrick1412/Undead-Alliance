@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class PlayerHealthController : MonoBehaviour
 {
     [SerializeField] //this allows health to be edited in unity editor
-    private float maxPlHealth;
+    public float maxPlHealth;
     [SerializeField]
-    private float currentPlHealth;
+    public float currentPlHealth;
 
     
 
