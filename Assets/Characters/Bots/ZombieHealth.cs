@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour
 {
+    public LootController lc;
     public int maxHealth = 100;
     private int currentHealth;
 
@@ -10,7 +11,7 @@ public class ZombieHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void ZombieTakeDamage(int damage)
     {
         currentHealth -= damage;
 
@@ -22,9 +23,11 @@ public class ZombieHealth : MonoBehaviour
 
     private void Die()
     {
+        
         // You can add any additional death effects here, like a sound or animation
 
         Debug.Log("Zombie died!");
+        lc.randomAmmoDrop(gameObject.transform);
 
         // For object pooling, we would disable the zombie instead of destroying it
         gameObject.SetActive(false);
