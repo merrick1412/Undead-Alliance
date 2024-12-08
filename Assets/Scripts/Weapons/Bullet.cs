@@ -19,12 +19,17 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        //Enemy enemy = hitInfo.GetComponent<Enemy>(); //makes sure bullet hit enemy
-        //if (enemy != null && piercing != pierceCounter){
-        //    pierceCounter++;
-        //    enemy.TakeDamage(damage);
-         //   }
-        
+        if (hitInfo.gameObject.tag == "Enemy")
+        {
+            Debug.Log("hit zombie");
+            GameObject zombie = hitInfo.gameObject;
+            zombie.GetComponent<ZombieHealth>().ZombieTakeDamage(damage);
+            pierceCounter++;
+            if (piercing == pierceCounter)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     // Update is called once per frame

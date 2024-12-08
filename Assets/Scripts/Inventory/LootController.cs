@@ -10,6 +10,7 @@ public class LootController : MonoBehaviour
     public float lootGate2;
     public float lootGate3;
     private int randomNum;
+    public GameObject player;
     void Start()
     {
         Object[] subListObjects = Resources.LoadAll("DroppedAmmo");
@@ -22,7 +23,7 @@ public class LootController : MonoBehaviour
         
     }
 
-    public void randomWeaponDrop(GameObject player, Transform t)
+    public void randomWeaponDrop(Transform t)
     {
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
@@ -30,7 +31,7 @@ public class LootController : MonoBehaviour
             
         } 
     }
-    public void randomAmmoDrop(GameObject player, Transform t)
+    public void randomAmmoDrop(Transform t)
     {
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
