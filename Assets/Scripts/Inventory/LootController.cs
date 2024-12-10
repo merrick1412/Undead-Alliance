@@ -23,18 +23,18 @@ public class LootController : MonoBehaviour
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
 
-            var droppedLoot = Instantiate(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)], t.position, Quaternion.identity,t);
+            var droppedLoot = Instantiate(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)], t.position, Quaternion.identity);
             
         }
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)); //as player gets higher health, better loot odds
         {
 
-            var droppedLoot = Instantiate(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)], t.position, Quaternion.identity, t);
+            var droppedLoot = Instantiate(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)], t.position, Quaternion.identity);
 
         }
         if (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate3)
         {
-            var droppedLoot = Instantiate(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)], t.position, Quaternion.identity, t);
+            var droppedLoot = Instantiate(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)], t.position, Quaternion.identity);
         }
 
     }
@@ -102,17 +102,17 @@ public class LootController : MonoBehaviour
             droppedLoot1.GetComponent<DroppedAmmo>().amount = 200 + (3 * randomNum);
         }
     }
-    public void LootRoll()
+    public void LootRoll(Transform t)
     {
         var ran = GetRandomNum();
         if (ran > 90)
         {
-            randomAmmoDrop(gameObject.transform);
+            randomAmmoDrop(t);
         }
         ran = GetRandomNum();
         if (ran > 95)
         {
-            randomWeaponDrop(gameObject.transform);
+            randomWeaponDrop(t);
         }
     }
     

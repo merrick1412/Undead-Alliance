@@ -27,11 +27,8 @@ public class ZombieHealth : MonoBehaviour
         // You can add any additional death effects here, like a sound or animation
 
         Debug.Log("Zombie died!");
-        var ran = lc.getRandomNum();
-        if (ran > 90)
-        {
-            lc.randomAmmoDrop(gameObject.transform);
-        }
+        lc.LootRoll(gameObject.transform);
+        
 
         // For object pooling, we would disable the zombie instead of destroying it
         Destroy(gameObject);
