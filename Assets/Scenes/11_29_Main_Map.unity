@@ -134,22 +134,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1628637360}
-    - target: {fileID: -5898434939821224704, guid: 9b107770122798f44a41973024c4d813, type: 3}
-      propertyPath: lootTable.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -5898434939821224704, guid: 9b107770122798f44a41973024c4d813, type: 3}
-      propertyPath: lootTable.Array.data[0]
-      value: 
-      objectReference: {fileID: 7849043731241977253, guid: 92d401e9bab1bbe479a4fb6f05eeb2f9, type: 3}
-    - target: {fileID: -5898434939821224704, guid: 9b107770122798f44a41973024c4d813, type: 3}
-      propertyPath: lootTable.Array.data[1]
-      value: 
-      objectReference: {fileID: 9091630787120371205, guid: 7f5c6367b888eca4d858df02218366fa, type: 3}
-    - target: {fileID: -5898434939821224704, guid: 9b107770122798f44a41973024c4d813, type: 3}
-      propertyPath: lootTable.Array.data[2]
-      value: 
-      objectReference: {fileID: 5373748945387271128, guid: 7f49094840509c34184766b96df4c025, type: 3}
     - target: {fileID: 2961800526349675337, guid: 9b107770122798f44a41973024c4d813, type: 3}
       propertyPath: m_Name
       value: LootController

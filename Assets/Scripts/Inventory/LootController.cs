@@ -5,7 +5,9 @@ using UnityEngine;
 public class LootController : MonoBehaviour
 {
     public List<GameObject> lootTable;
-    public List<GameObject> weaponLootTable;
+    public List<GameObject> weaponLootTableEarly;
+    public List<GameObject> weaponLootTableMid;
+    public List<GameObject> weaponLootTableLate;
     public float lootGate1;
     public float lootGate2;
     public float lootGate3;
