@@ -107,12 +107,13 @@ MonoBehaviour:
   rateOfFire: 10
   Automatic: 1
   MagazineSize: 45
-  MagazineCount: 0
+  MagazineCount: 45
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0
-  reloadTime: 3.5
+  reloadTime: 3
   isReloading: 0
+  isSniper: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &-2714381003535299491
 AudioSource:

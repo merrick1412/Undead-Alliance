@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d29fb3f6e5e40c4b8553dd946cca390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 1
   ammoType: 1
   weaponName: M249 SAW
   gunshotSound: {fileID: 0}
@@ -55,12 +55,13 @@ MonoBehaviour:
   rateOfFire: 7
   Automatic: 1
   MagazineSize: 150
-  MagazineCount: 0
+  MagazineCount: 150
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0
   reloadTime: 10
   isReloading: 0
+  isSniper: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &6900424186377600471
 AudioSource:

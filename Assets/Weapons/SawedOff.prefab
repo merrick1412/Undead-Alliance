@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7546063738594207076
+--- !u!1 &3163078998508982763
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,68 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5146682814243892733}
-  - component: {fileID: 5135833390518549911}
-  - component: {fileID: -1887980184424919259}
-  - component: {fileID: 7839167967348401784}
-  m_Layer: 4
-  m_Name: AK
+  - component: {fileID: 7014974545223510199}
+  - component: {fileID: -53342985082186743}
+  - component: {fileID: -247053850619423969}
+  - component: {fileID: 5383982885637491379}
+  m_Layer: 0
+  m_Name: SawedOff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5146682814243892733
+  m_IsActive: 1
+--- !u!4 &7014974545223510199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7546063738594207076}
+  m_GameObject: {fileID: 3163078998508982763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5135833390518549911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7546063738594207076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d29fb3f6e5e40c4b8553dd946cca390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 1
-  ammoType: 1
-  weaponName: AK-47
-  gunshotSound: {fileID: 0}
-  bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 30
-  rateOfFire: 7
-  Automatic: 1
-  MagazineSize: 35
-  MagazineCount: 35
-  isShotgun: 0
-  shotgunSpreadAngle: 0
-  shotgunPelletCount: 0
-  reloadTime: 3
-  isReloading: 0
-  isSniper: 0
-  playerInventoryController: {fileID: 0}
---- !u!212 &-1887980184424919259
+--- !u!212 &-53342985082186743
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7546063738594207076}
+  m_GameObject: {fileID: 3163078998508982763}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -101,27 +72,56 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1321194997
-  m_SortingLayer: 4
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -815785108, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
+  m_Sprite: {fileID: -2047968303, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.41, y: 0.13}
+  m_Size: {x: 0.28, y: 0.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &7839167967348401784
+--- !u!114 &-247053850619423969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163078998508982763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d29fb3f6e5e40c4b8553dd946cca390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  ammoType: 0
+  weaponName: Sawed Off Shotgun
+  gunshotSound: {fileID: 0}
+  bulletPrefab: {fileID: 6826524742971309505, guid: 1875b726e31776642a39645b6570a2f2, type: 3}
+  bulletForce: 0
+  rateOfFire: 1
+  Automatic: 0
+  MagazineSize: 4
+  MagazineCount: 4
+  isShotgun: 1
+  shotgunSpreadAngle: 45
+  shotgunPelletCount: 6
+  reloadTime: 6
+  isReloading: 0
+  isSniper: 0
+  playerInventoryController: {fileID: 0}
+--- !u!82 &5383982885637491379
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7546063738594207076}
+  m_GameObject: {fileID: 3163078998508982763}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}

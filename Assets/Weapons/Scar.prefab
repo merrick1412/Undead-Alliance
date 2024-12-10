@@ -111,8 +111,9 @@ MonoBehaviour:
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0
-  reloadTime: 4.5
+  reloadTime: 3
   isReloading: 0
+  isSniper: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &9159241194733521823
 AudioSource:

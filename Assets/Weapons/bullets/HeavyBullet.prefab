@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 3423866197700712685}
-  damage: 5
+  damage: 50
   impactEffect: {fileID: 0}
   piercing: 3
 --- !u!50 &3423866197700712685

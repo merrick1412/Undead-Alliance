@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public Int32 shotgunPelletCount;
     public float reloadTime;
     public bool isReloading = false;
+    public bool isSniper = false;
     
     public PlayerInventoryController playerInventoryController;
 
@@ -80,6 +81,7 @@ public class Weapon : MonoBehaviour //parent class for weapons
         shotgunSpreadAngle = other.shotgunSpreadAngle;
         shotgunPelletCount = other.shotgunPelletCount;
         reloadTime = other.reloadTime;
+        isSniper = other.isSniper;
 }
 
     private Int32 getRemainingBullets()

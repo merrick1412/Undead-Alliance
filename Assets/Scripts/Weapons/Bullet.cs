@@ -10,11 +10,17 @@ public class Bullet : MonoBehaviour
     public GameObject impactEffect; //later can add blood/debris on impact
     private int pierceCounter = 0;
     public int piercing;
+    public bool isSniperBullet;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();  // Automatically assign the Rigidbody2D component
         rb.velocity = transform.up * speed;
+        if (isSniperBullet)
+        {
+            damage = damage + 10;
+            piercing = piercing + 5;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -22,7 +28,7 @@ public class Bullet : MonoBehaviour
         if (hitInfo.gameObject.tag == "Enemy")
         {
             Debug.Log("hit zombie");
-            GameObject zombie = hitInfo.gameObject;
+            GameObject zombie = hitInfo.gameObject;            
             zombie.GetComponent<ZombieHealth>().ZombieTakeDamage(damage);
             pierceCounter++;
             if (piercing == pierceCounter)
