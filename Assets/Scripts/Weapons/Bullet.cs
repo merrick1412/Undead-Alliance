@@ -23,12 +23,13 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D hitInfo)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hitInfo.gameObject.tag == "Enemy")
+        Debug.Log("hit zombie");
+        if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("hit zombie");
-            GameObject zombie = hitInfo.gameObject;            
+            GameObject zombie = collision.gameObject;
             zombie.GetComponent<ZombieHealth>().ZombieTakeDamage(damage);
             pierceCounter++;
             if (piercing == pierceCounter)
