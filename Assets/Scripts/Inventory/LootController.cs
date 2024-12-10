@@ -13,39 +13,52 @@ public class LootController : MonoBehaviour
     public float lootGate3;
     private int randomNum;
     public GameObject player;
+    static System.Random rnd = new System.Random();
     void Start()
     {       
     }
 
-    public void randomWeaponDrop(Transform t)
+    private void randomWeaponDrop(Transform t)
     {
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
-            //var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), t.position, Quaternion.identity,t);
+
+            var droppedLoot = Instantiate(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)], t.position, Quaternion.identity,t);
             
-        } 
+        }
+        if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)); //as player gets higher health, better loot odds
+        {
+
+            var droppedLoot = Instantiate(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)], t.position, Quaternion.identity, t);
+
+        }
+        if (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate3)
+        {
+            var droppedLoot = Instantiate(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)], t.position, Quaternion.identity, t);
+        }
+
     }
-    public void randomAmmoDrop(Transform t)
+    private void randomAmmoDrop(Transform t)
     {
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
             var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), transform.position, Quaternion.identity);
-            randomNum = getRandomNum();
+            randomNum = GetRandomNum();
             droppedLoot.GetComponent<DroppedAmmo>().amount = 20 + (3 * randomNum);
         } //spawns in ammo with a random amount between 20 and 320
 
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate2 && player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate1)
         {
-            randomNum = getRandomNum();
+            randomNum = GetRandomNum();
             if (randomNum > 50)
             {
-                randomNum = getRandomNum();
+                randomNum = GetRandomNum();
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 10 + (2 * randomNum);
             } //50% get lots of light or some medium
             else
             {
-                randomNum = getRandomNum();
+                randomNum = GetRandomNum();
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 75 + (3 * randomNum);
             }
@@ -53,10 +66,10 @@ public class LootController : MonoBehaviour
 
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)
         {
-            randomNum = getRandomNum();
+            randomNum = GetRandomNum();
             if (randomNum < 33)
             {
-                randomNum = getRandomNum();
+                randomNum = GetRandomNum();
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 50 + (3 * randomNum);
                 var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), t.position, Quaternion.identity);
@@ -64,7 +77,7 @@ public class LootController : MonoBehaviour
             }
             if (randomNum < 66 && randomNum > 33)
             {
-                randomNum = getRandomNum();
+                randomNum = GetRandomNum();
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity  );
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 100 + (3 * randomNum);
                 var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedHeavyAmmo"), t.position, Quaternion.identity);
@@ -72,7 +85,7 @@ public class LootController : MonoBehaviour
             }
             else
             {
-                randomNum = getRandomNum();
+                randomNum = GetRandomNum();
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 200 + (3 * randomNum);
                 var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedHeavyAmmo"), t.position, Quaternion.identity);
@@ -82,17 +95,35 @@ public class LootController : MonoBehaviour
         }
         else
         {
-            randomNum = getRandomNum();
+            randomNum = GetRandomNum();
             var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
             droppedLoot.GetComponent<DroppedAmmo>().amount = 200 + (4 * randomNum);
             var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedHeavyAmmo"), t.position, Quaternion.identity);
             droppedLoot1.GetComponent<DroppedAmmo>().amount = 200 + (3 * randomNum);
         }
     }
-
-    public int getRandomNum()
+    public void LootRoll()
+    {
+        var ran = GetRandomNum();
+        if (ran > 90)
+        {
+            randomAmmoDrop(gameObject.transform);
+        }
+        ran = GetRandomNum();
+        if (ran > 95)
+        {
+            randomWeaponDrop(gameObject.transform);
+        }
+    }
+    
+    private int GetRandomNum()
     {
         return Random.Range(1, 101);
+    }
+    private int GetRandomWeapon(List<GameObject> list)
+    {
+        int r = rnd.Next(list.Count);
+        return r;
     }
     // Update is called once per frame
     void Update()
