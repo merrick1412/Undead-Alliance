@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1321194997
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1534549910, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,7 +103,6 @@ MonoBehaviour:
   weaponName: M60
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5926062434511232338, guid: 5cdfa84c76a76b84782d8ad604e148d6, type: 3}
-  bulletForce: 0
   rateOfFire: 6
   Automatic: 1
   MagazineSize: 80

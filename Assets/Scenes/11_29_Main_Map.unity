@@ -2818,34 +2818,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 3024879787372423045, guid: a523b46af45a73a4fab03d8354007ca7, type: 3}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 8535494027400636780, guid: 6007b2e9d4ff29242b8c2cca546d4afc, type: 3}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 1372111987500227606, guid: df5da28a5207ffa4eb501b241403d7c5, type: 3}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[9]
-      value: 
-      objectReference: {fileID: 3163078998508982763, guid: 53dc598fd6dfd724b943add707403407, type: 3}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[10]
-      value: 
-      objectReference: {fileID: 1896890541108126794, guid: 43fc6f2087314ed4694ca258746df6b3, type: 3}
-    - target: {fileID: 267594030957977094, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
-      propertyPath: weaponPrefabs.Array.data[11]
-      value: 
-      objectReference: {fileID: 3163078998508982763, guid: 53dc598fd6dfd724b943add707403407, type: 3}
     - target: {fileID: 2116850831301986953, guid: 32647bd43071edf4a94661d45a73c26f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
