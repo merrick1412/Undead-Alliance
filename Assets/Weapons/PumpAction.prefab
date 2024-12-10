@@ -103,16 +103,15 @@ MonoBehaviour:
   weaponName: Pump Action Shotgun
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 6826524742971309505, guid: 1875b726e31776642a39645b6570a2f2, type: 3}
-  bulletForce: 15
   rateOfFire: 1
   Automatic: 0
   MagazineSize: 8
-  MagazineCount: 8
+  MagazineCount: 0
   isShotgun: 1
-  shotgunSpreadAngle: 50
+  shotgunSpreadAngle: 30
   shotgunPelletCount: 8
   reloadTime: 8
-  isReloading: 0
+  isReloading: 1
   playerInventoryController: {fileID: 0}
 --- !u!82 &-7725322742382873949
 AudioSource:
