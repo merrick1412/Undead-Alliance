@@ -39,7 +39,6 @@ public class Shooting : MonoBehaviour
 
         // Try to get the current weapon after Inventory initialization
         currentWeapon = inventory.GetComponent<Weapon>();
-        bulletForce = currentWeapon.bulletForce;
         bulletPrefab = currentWeapon.bulletPrefab;
         
 
@@ -93,7 +92,6 @@ public class Shooting : MonoBehaviour
     private void UpdateCurrentWeapon()
     {
         currentWeapon = inventory.GetCurrentWeapon(); //if weapon is switched, changes gun properly
-        bulletForce = currentWeapon.bulletForce;
         bulletPrefab = currentWeapon.bulletPrefab;
         audioSource = currentWeapon.GetComponent<AudioSource>();
     }
@@ -162,9 +160,7 @@ public class Shooting : MonoBehaviour
         {
             audioSource.PlayOneShot(currentWeapon.gunshotSound); // plays gunshot sound if not automatic
         }
-        bullet.layer = 10;
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        bullet.layer = 10;        
         Destroy(bullet, 5.0f);
     }
 
@@ -186,7 +182,7 @@ public class Shooting : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             bullet.layer = 10;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse); //math to shoot the shotgun bullets in a spread
+           
             
             
             

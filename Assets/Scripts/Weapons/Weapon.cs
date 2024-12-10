@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour //parent class for weapons
     public string weaponName;
     public AudioClip gunshotSound;
     public GameObject bulletPrefab;
-    public float bulletForce;
     public float rateOfFire;
     public bool Automatic;
     public Int32 MagazineSize;
@@ -69,7 +68,6 @@ public class Weapon : MonoBehaviour //parent class for weapons
         weaponName = other.weaponName;
         gunshotSound = other.gunshotSound;
         weaponType = other.weaponType;
-        bulletForce = other.bulletForce;
         rateOfFire = other.rateOfFire;
         Automatic = other.Automatic;
         MagazineSize = other.MagazineSize;
