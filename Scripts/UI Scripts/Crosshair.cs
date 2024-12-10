@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
     void Start()
     {
-        Cursor.visible = false; //hides default mouse
+        Cursor.visible = false; // Hide the default system cursor
     }
 
     void Update()
     {
-        UnityEngine.Vector3 mousePosition = Input.mousePosition;//establishes the mouses location
+        // Get the mouse position in screen space (pixels)
+        Vector3 mousePosition = Input.mousePosition;
 
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition); //gets the mouse locatoin in relation to the gaem world
+        // Convert the screen space mouse position to world space
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        transform.position = new UnityEngine.Vector3(mousePosition.x,mousePosition.y, 0);
+        // Ensure the crosshair stays at the same z-plane (2D) as the player
+        mousePosition.z = 0;
+
+        // Set the crosshair's position to follow the mouse
+        transform.position = mousePosition;
     }
 }
