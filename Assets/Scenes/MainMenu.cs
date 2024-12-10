@@ -10,9 +10,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync("SampleScene");
     }
 
-    public void Options()
+    public void Instructions()
     {
-        SceneManager.LoadSceneAsync("OptionsScene");
+        SceneManager.LoadSceneAsync("InstructionsScene");
     }
 
     public void ReturnToMain()
