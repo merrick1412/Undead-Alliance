@@ -19,6 +19,14 @@ public class ZombieSpawner : MonoBehaviour
     {
         
         currentZombieCount = zombieList.Count;
+        for (int i = 0; i < currentZombieCount; i++) 
+        {
+            if (zombieList[i] == null)
+            {
+                zombieList.RemoveAt(i);
+            }
+        }
+
     }
 
     void SpawnZombie()

@@ -24,17 +24,20 @@ public class LootController : MonoBehaviour
         {
 
             var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)]), t.position, Quaternion.identity);
+            Debug.Log("Ran This low");
 
         }
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)) ; //as player gets higher health, better loot odds
         {
 
             var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)]), t.position, Quaternion.identity);
+            Debug.Log("Ran This med");
 
         }
         if (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate3)
         {
             var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)]), t.position, Quaternion.identity);
+            Debug.Log("Ran This high");
         }
 
     }
@@ -45,6 +48,7 @@ public class LootController : MonoBehaviour
             var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), transform.position, Quaternion.identity);
             randomNum = GetRandomNum();
             droppedLoot.GetComponent<DroppedAmmo>().amount = 20 + (3 * randomNum);
+            Debug.Log("Ran very low");
         } //spawns in ammo with a random amount between 20 and 320
 
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate2 && player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate1)
@@ -62,10 +66,12 @@ public class LootController : MonoBehaviour
                 var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedLightAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 75 + (3 * randomNum);
             }
+            Debug.Log("Ran This low");
         }
 
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)
         {
+            Debug.Log("Ran med");
             randomNum = GetRandomNum();
             if (randomNum < 33)
             {
@@ -93,8 +99,9 @@ public class LootController : MonoBehaviour
             }
 
         }
-        else
+        if (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate3)
         {
+            Debug.Log("Ran This high");
             randomNum = GetRandomNum();
             var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
             droppedLoot.GetComponent<DroppedAmmo>().amount = 200 + (4 * randomNum);
