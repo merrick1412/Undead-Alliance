@@ -103,11 +103,10 @@ MonoBehaviour:
   weaponName: Hunting Rifle
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5926062434511232338, guid: 5cdfa84c76a76b84782d8ad604e148d6, type: 3}
-  bulletForce: 50
-  rateOfFire: 1
+  rateOfFire: 0.5
   Automatic: 0
   MagazineSize: 5
-  MagazineCount: 3
+  MagazineCount: 5
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0

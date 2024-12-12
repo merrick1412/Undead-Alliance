@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -2523936440132036082}
   - component: {fileID: -4085565859301106663}
   - component: {fileID: 6107934210967378212}
-  - component: {fileID: -5786356439327345011}
   - component: {fileID: 7297450498823786851}
   - component: {fileID: -4763680932059462503}
+  - component: {fileID: 4266962151883396431}
   m_Layer: 7
   m_Name: sZombie1
   m_TagString: Enemy
@@ -136,23 +136,6 @@ MonoBehaviour:
   maxHealth: 100
   levelSystem: {fileID: 0}
   zHealthMultiplier: 10
---- !u!114 &-5786356439327345011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3604863785331745336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc141a3887e3b2f468d011b0ec93fdd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 3604863785331745336}
-  spawnAreaSize: {x: 20, y: 20}
-  spawnAreaCenter: {x: 0, y: 0, z: 0}
-  spawnRate: 2
-  maxZombies: 10
 --- !u!50 &7297450498823786851
 Rigidbody2D:
   serializedVersion: 4
@@ -225,3 +208,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4266962151883396431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604863785331745336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ed72eeaa27c7c44b2e7cc20c035ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAwarenessDistance: 5

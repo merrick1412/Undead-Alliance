@@ -53,18 +53,23 @@ MonoBehaviour:
   - {fileID: 3163078998508982763, guid: 53dc598fd6dfd724b943add707403407, type: 3}
   - {fileID: 2225726200596710245, guid: 14fdb79319192ef4799ea1733e11d3b3, type: 3}
   - {fileID: 8251493622916275338, guid: 1fddc032d36639649bd373db2cc33ba3, type: 3}
+  - {fileID: 2419106151710567494, guid: 5e962d5fc7b2ede49894a7d9a8a6256a, type: 3}
   weaponLootTableMid:
   - {fileID: 1896890541108126794, guid: 43fc6f2087314ed4694ca258746df6b3, type: 3}
   - {fileID: 7546063738594207076, guid: 6173adddcc9bd974bb25f9a70840b4bd, type: 3}
   - {fileID: 8535494027400636780, guid: 6007b2e9d4ff29242b8c2cca546d4afc, type: 3}
   - {fileID: 3574757234177737297, guid: 8639e29d5f3b6e14fba984dbc58b5ff3, type: 3}
+  - {fileID: 2544466831755536820, guid: 58acdfd79d2d7b74f964af68b6ce68e6, type: 3}
+  - {fileID: 3465527407818593437, guid: bff8ab1d081cfa946a35ab7029bc4da6, type: 3}
+  - {fileID: 6476921749913656606, guid: 7db466d8ffb79ea4fbf8d6917000a4eb, type: 3}
   weaponLootTableLate:
   - {fileID: 2687975057903664962, guid: 655ff3e6a777c6546b17b41624fee302, type: 3}
   - {fileID: 2981121039405325983, guid: 2974f3aec0936cc49af1d776b61658b2, type: 3}
   - {fileID: 1372111987500227606, guid: df5da28a5207ffa4eb501b241403d7c5, type: 3}
   - {fileID: 3024879787372423045, guid: a523b46af45a73a4fab03d8354007ca7, type: 3}
   - {fileID: 5808177976112017766, guid: c409e1f454460924ea09273ec7c45de5, type: 3}
-  lootGate1: 0
-  lootGate2: 10
-  lootGate3: 90
+  - {fileID: 16215420765962924, guid: 7eb9bfd30438c9247af366ec12020184, type: 3}
+  lootGate1: 250
+  lootGate2: 400
+  lootGate3: 600
   player: {fileID: 0}

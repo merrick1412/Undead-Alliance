@@ -9,6 +9,8 @@ public class ZombieHealth : MonoBehaviour
     public int zHealthMultiplier;
     private void Start()
     {
+        levelSystem = FindObjectOfType<LevelSystem>().gameObject;
+        lc = FindObjectOfType<LootController>();
         maxHealth = 100 + (levelSystem.GetComponent<LevelSystem>().GetLevelNumber() * zHealthMultiplier);
         currentHealth = maxHealth;
     }

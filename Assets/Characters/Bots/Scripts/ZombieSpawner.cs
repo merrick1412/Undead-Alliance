@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -8,10 +9,16 @@ public class ZombieSpawner : MonoBehaviour
     public float spawnRate = 5f;        // Time in seconds between spawns
     public int maxZombies = 10;         // Maximum number of zombies allowed in the game at once
     private int currentZombieCount = 0; // Tracks how many zombies are in the game
+    public List<GameObject> zombieList = new List<GameObject>();
 
     void Start()
     {
         InvokeRepeating("SpawnZombie", spawnRate, spawnRate);  // Repeatedly call the SpawnZombie method
+    }
+    private void Update()
+    {
+        
+        currentZombieCount = zombieList.Count;
     }
 
     void SpawnZombie()
@@ -19,21 +26,22 @@ public class ZombieSpawner : MonoBehaviour
         if (currentZombieCount < maxZombies)
         {
             // Generate a random position within the spawn area
-            Vector3 randomPosition = GetRandomSpawnPosition();
+            Vector2 randomPosition = GetRandomSpawnPosition();
 
             // Instantiate a new zombie at the random position
-            Instantiate(zombiePrefab, randomPosition, Quaternion.identity);
+            GameObject newZombie = Instantiate(zombiePrefab, randomPosition, Quaternion.identity);
+            zombieList.Add(newZombie);
 
             // Increment the zombie count when a new one spawns
             currentZombieCount++;
         }
     }
 
-    Vector3 GetRandomSpawnPosition()
+    Vector2 GetRandomSpawnPosition()
     {
         float randomX = Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2);
         float randomY = spawnAreaCenter.y; // Fixed Y level for ground
-        return new Vector3(spawnAreaCenter.x + randomX, randomY, spawnAreaCenter.z);
+        return new Vector3(spawnAreaCenter.x + randomX, randomY);
     }
 
 

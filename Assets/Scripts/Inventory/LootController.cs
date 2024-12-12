@@ -15,7 +15,7 @@ public class LootController : MonoBehaviour
     public GameObject player;
     static System.Random rnd = new System.Random();
     void Start()
-    {       
+    {
     }
 
     private void randomWeaponDrop(Transform t)
@@ -23,18 +23,18 @@ public class LootController : MonoBehaviour
         if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate1) //as player gets higher health, better loot odds
         {
 
-            var droppedLoot = Instantiate(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)], t.position, Quaternion.identity);
-            
+            var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableEarly[GetRandomWeapon(weaponLootTableEarly)]), t.position, Quaternion.identity);
+
         }
-        if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)); //as player gets higher health, better loot odds
+        if (player.GetComponent<PlayerHealthController>().maxPlHealth < lootGate3 && (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate2)) ; //as player gets higher health, better loot odds
         {
 
-            var droppedLoot = Instantiate(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)], t.position, Quaternion.identity);
+            var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableMid[GetRandomWeapon(weaponLootTableMid)]), t.position, Quaternion.identity);
 
         }
         if (player.GetComponent<PlayerHealthController>().maxPlHealth > lootGate3)
         {
-            var droppedLoot = Instantiate(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)], t.position, Quaternion.identity);
+            var droppedLoot = Instantiate(CreateDroppedWeapon(weaponLootTableLate[GetRandomWeapon(weaponLootTableLate)]), t.position, Quaternion.identity);
         }
 
     }
@@ -78,7 +78,7 @@ public class LootController : MonoBehaviour
             if (randomNum < 66 && randomNum > 33)
             {
                 randomNum = GetRandomNum();
-                var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity  );
+                var droppedLoot = Instantiate(lootTable.Find(item => item.name == "DroppedMediumAmmo"), t.position, Quaternion.identity);
                 droppedLoot.GetComponent<DroppedAmmo>().amount = 100 + (3 * randomNum);
                 var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedHeavyAmmo"), t.position, Quaternion.identity);
                 droppedLoot1.GetComponent<DroppedAmmo>().amount = 75 + (2 * randomNum);
@@ -91,7 +91,7 @@ public class LootController : MonoBehaviour
                 var droppedLoot1 = Instantiate(lootTable.Find(item => item.name == "DroppedHeavyAmmo"), t.position, Quaternion.identity);
                 droppedLoot1.GetComponent<DroppedAmmo>().amount = 75 + (3 * randomNum);
             }
-            
+
         }
         else
         {
@@ -115,7 +115,7 @@ public class LootController : MonoBehaviour
             randomWeaponDrop(t);
         }
     }
-    
+
     private int GetRandomNum()
     {
         return Random.Range(1, 101);
@@ -126,8 +126,30 @@ public class LootController : MonoBehaviour
         return r;
     }
     // Update is called once per frame
-    void Update()
+    private GameObject CreateDroppedWeapon(GameObject weapon)
     {
         
+
+        Vector3 dropPosition = transform.position + transform.forward;
+        GameObject droppedItem = FindObjectOfType<Inventory>().weaponDropPrefab;
+        
+
+        Weapon droppedWeapon = droppedItem.GetComponent<Weapon>();
+        if (droppedWeapon != null)
+        {
+            droppedWeapon.CopyStats(weapon.GetComponent<Weapon>());
+        }
+
+        SpriteRenderer droppedSpriteRenderer = droppedItem.GetComponent<SpriteRenderer>();
+        SpriteRenderer weaponSpriteRenderer = weapon.GetComponent<SpriteRenderer>();
+
+        if (droppedSpriteRenderer != null && weaponSpriteRenderer != null)
+        {
+            droppedSpriteRenderer.sprite = weaponSpriteRenderer.sprite;
+        }
+        return droppedItem;
+       
+        
+        Debug.Log($"Dropped {weapon.GetComponent<Weapon>().weaponName} at {dropPosition}");
     }
 }

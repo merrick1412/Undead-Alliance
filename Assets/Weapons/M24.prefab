@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,10 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   ammoType: 1
-  weaponName: 
+  weaponName: M24 Sniper
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  rateOfFire: 1
+  rateOfFire: 0.5
   Automatic: 0
   MagazineSize: 10
   MagazineCount: 10

@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.08, y: -0.027, z: 0}
-  m_LocalScale: {x: 0.4634, y: 0.6073, z: 1}
+  m_LocalScale: {x: 0.4634, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,7 +103,6 @@ MonoBehaviour:
   weaponName: Revolver
   gunshotSound: {fileID: 8300000, guid: 6659bd7e78543a745b37073a628bd9a7, type: 3}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  bulletForce: 15
   rateOfFire: 2
   Automatic: 0
   MagazineSize: 6
@@ -113,6 +112,7 @@ MonoBehaviour:
   shotgunPelletCount: 0
   reloadTime: 4
   isReloading: 0
+  isSniper: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &-4041404172435543084
 AudioSource:
