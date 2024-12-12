@@ -52,19 +52,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   ammoType: 1
-  weaponName: M24 Sniper
+  weaponName: AK-47
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  rateOfFire: 0.5
-  Automatic: 0
-  MagazineSize: 10
-  MagazineCount: 10
+  rateOfFire: 7
+  Automatic: 1
+  MagazineSize: 35
+  MagazineCount: 35
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0
   reloadTime: 3
   isReloading: 0
-  isSniper: 1
+  isSniper: 0
   playerInventoryController: {fileID: 0}
 --- !u!82 &-361083801379428236
 AudioSource:
@@ -198,7 +198,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.12}
+    oldSize: {x: 0.41, y: 0.13}
     newSize: {x: 0.39, y: 0.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_SortingLayerID: 1321194997
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1813214051, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
+  m_Sprite: {fileID: -815785108, guid: 3fb3ef80a779ebe458186b003409726b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

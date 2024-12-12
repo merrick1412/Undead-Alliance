@@ -24,13 +24,11 @@ public class LevelSystem : MonoBehaviour{
         {
             // Enough experience to level up
             level++;
-            experience -= experienceToNextLevel;
-            if (OnLevelChanged != null)
-            {
-                player.GetComponent<PlayerHealthController>().AddHealth(50);
-                OnLevelChanged(this, EventArgs.Empty);
-            }
-            if (OnExperienceChanged != null) OnExperienceChanged(this, EventArgs.Empty);
+            experience -= experienceToNextLevel;            
+            player.GetComponent<PlayerHealthController>().setMaxHealth(50);
+            player.GetComponent<PlayerHealthController>().AddHealth(player.GetComponent<PlayerHealthController>().maxPlHealth);
+            OnLevelChanged(this, EventArgs.Empty);
+            //if (OnExperienceChanged != null) OnExperienceChanged(this, EventArgs.Empty);
         }
     }
 

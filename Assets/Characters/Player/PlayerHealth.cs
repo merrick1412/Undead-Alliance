@@ -1,28 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
-
+    public Image healthBar;
+    private PlayerHealthController phc;
+    private float hpPercent = 1;
     void Start()
     {
-        currentHealth = maxHealth;
+        healthBar.type = Image.Type.Filled;
+        phc = FindObjectOfType<PlayerHealthController>();
+        healthBar.fillAmount = hpPercent;
     }
-
-    public void TakeDamage(int damage)
+    private void Update()
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Debug.Log("Player has died!");
-        // Handle player death (respawn, game over, etc.)
+        hpPercent = (phc.currentPlHealth / phc.maxPlHealth);
+        healthBar.fillAmount = hpPercent;
     }
 }
