@@ -103,7 +103,7 @@ MonoBehaviour:
   weaponName: M24 Sniper
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5675113412299366404, guid: 36f4b4a3b5f767949b9d0406ce796d97, type: 3}
-  rateOfFire: 0.5
+  rateOfFire: 0.2
   Automatic: 0
   MagazineSize: 10
   MagazineCount: 10

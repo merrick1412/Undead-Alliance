@@ -103,14 +103,14 @@ MonoBehaviour:
   weaponName: Hunting Rifle
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5926062434511232338, guid: 5cdfa84c76a76b84782d8ad604e148d6, type: 3}
-  rateOfFire: 0.5
+  rateOfFire: 0.2
   Automatic: 0
   MagazineSize: 5
   MagazineCount: 5
   isShotgun: 0
   shotgunSpreadAngle: 0
   shotgunPelletCount: 0
-  reloadTime: 4
+  reloadTime: 5.5
   isReloading: 0
   isSniper: 0
   playerInventoryController: {fileID: 0}

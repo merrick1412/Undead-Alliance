@@ -100,10 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   ammoType: 2
-  weaponName: AWP
+  weaponName: AWP .50
   gunshotSound: {fileID: 0}
   bulletPrefab: {fileID: 5926062434511232338, guid: 5cdfa84c76a76b84782d8ad604e148d6, type: 3}
-  rateOfFire: 1
+  rateOfFire: 0.3
   Automatic: 0
   MagazineSize: 6
   MagazineCount: 6
