@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ZombieDeathTracker : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public List<GameObject> aliveZombies = new List<GameObject>();
+    public int prevSize;
     void Start()
     {
-        
+        prevSize = 0;
     }
 
     // Update is called once per frame
