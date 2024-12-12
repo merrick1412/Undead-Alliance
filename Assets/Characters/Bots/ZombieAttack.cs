@@ -13,7 +13,7 @@ public class ZombieAttack : MonoBehaviour
             nextAttackTime = Time.time + attackRate;  // Set the next attack time
 
             // Assuming the player has a "PlayerHealth" component that handles taking damage
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            PlayerHealthController playerHealth = other.GetComponent<PlayerHealthController>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage);
