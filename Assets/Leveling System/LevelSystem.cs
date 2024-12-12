@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelSystem {
+public class LevelSystem : MonoBehaviour{
 
     public event EventHandler OnExperienceChanged;
     public event EventHandler OnLevelChanged;
-
+    public GameObject player;
     private int level;
     private int experience;
     private int experienceToNextLevel;
@@ -20,13 +20,18 @@ public class LevelSystem {
 
     public void AddExperience(int amount) { 
         experience += amount;
-        if (experience >= experienceToNextLevel) {
+        if (experience >= experienceToNextLevel)
+        {
             // Enough experience to level up
             level++;
             experience -= experienceToNextLevel;
-            if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
+            if (OnLevelChanged != null)
+            {
+                player.GetComponent<PlayerHealthController>().AddHealth(50);
+                OnLevelChanged(this, EventArgs.Empty);
+            }
+            if (OnExperienceChanged != null) OnExperienceChanged(this, EventArgs.Empty);
         }
-        if (OnExperienceChanged != null) OnExperienceChanged(this, EventArgs.Empty);
     }
 
     public int GetLevelNumber() {

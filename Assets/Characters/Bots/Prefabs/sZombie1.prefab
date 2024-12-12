@@ -134,6 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lc: {fileID: 0}
   maxHealth: 100
+  levelSystem: {fileID: 0}
+  zHealthMultiplier: 10
 --- !u!114 &-5786356439327345011
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,6 +65,6 @@ MonoBehaviour:
   - {fileID: 3024879787372423045, guid: a523b46af45a73a4fab03d8354007ca7, type: 3}
   - {fileID: 5808177976112017766, guid: c409e1f454460924ea09273ec7c45de5, type: 3}
   lootGate1: 0
-  lootGate2: 0
-  lootGate3: 0
+  lootGate2: 10
+  lootGate3: 90
   player: {fileID: 0}

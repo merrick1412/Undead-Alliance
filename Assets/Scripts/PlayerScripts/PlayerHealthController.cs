@@ -53,4 +53,8 @@ public class PlayerHealthController : MonoBehaviour
             currentPlHealth = maxPlHealth;
         }
     }
+    public void setMaxHealth(float amountToAdd)
+    {
+        maxPlHealth = maxPlHealth + amountToAdd;
+    }
 }
