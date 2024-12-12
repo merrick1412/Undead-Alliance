@@ -65,7 +65,7 @@ public class ZombieAI : MonoBehaviour
     private void AttackPlayer()
     {
         Debug.Log("Zombie is attacking the player!");
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        PlayerHealthController playerHealth = player.gameObject.GetComponent<PlayerHealthController>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(attackDamage); // Reduce player's health
