@@ -66,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715198580500693211, guid: 1960c464ee3ee974bb1e770299ed58bc, type: 3}
       propertyPath: _speed
-      value: 0.8
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1715198580500693211, guid: 1960c464ee3ee974bb1e770299ed58bc, type: 3}
       propertyPath: _rotationSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8761862011298152871, guid: 1960c464ee3ee974bb1e770299ed58bc, type: 3}
       propertyPath: m_Name
