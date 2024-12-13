@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312103ea957bdfe4fb13ed227e5b44f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
-  _rotationSpeed: 100
+  _speed: 1
+  _rotationSpeed: 80
   _screenBorder: 0
 --- !u!114 &9111294124743218265
 MonoBehaviour:
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ed72eeaa27c7c44b2e7cc20c035ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
+  _playerAwarenessDistance: 25
 --- !u!95 &8587588999914127606
 Animator:
   serializedVersion: 5
