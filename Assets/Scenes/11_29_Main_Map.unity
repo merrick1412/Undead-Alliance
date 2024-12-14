@@ -1852,6 +1852,14 @@ PrefabInstance:
       propertyPath: zombiePrefab
       value: 
       objectReference: {fileID: 3604863785331745336, guid: 8548740e789756e438147c9172838b1a, type: 3}
+    - target: {fileID: 2744045124510699433, guid: dd3053ec5a4c37f49aea9f0350e3af1c, type: 3}
+      propertyPath: spawnAreaSize.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744045124510699433, guid: dd3053ec5a4c37f49aea9f0350e3af1c, type: 3}
+      propertyPath: spawnAreaSize.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9170036829837616072, guid: dd3053ec5a4c37f49aea9f0350e3af1c, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner (1)
@@ -2686,6 +2694,10 @@ PrefabInstance:
       propertyPath: zombiePrefab
       value: 
       objectReference: {fileID: 3604863785331745336, guid: 8548740e789756e438147c9172838b1a, type: 3}
+    - target: {fileID: 2744045124510699433, guid: dd3053ec5a4c37f49aea9f0350e3af1c, type: 3}
+      propertyPath: spawnAreaSize.x
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9170036829837616072, guid: dd3053ec5a4c37f49aea9f0350e3af1c, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner

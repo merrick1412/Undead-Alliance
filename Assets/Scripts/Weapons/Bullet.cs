@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();  // Automatically assign the Rigidbody2D component
+        rb = GetComponent<Rigidbody2D>();  // Automatically the Rigidbody2D component
         rb.velocity = transform.up * speed;
         if (isSniperBullet)
         {
@@ -25,12 +25,12 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hit zombie");
+        
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("hit zombie");
             GameObject zombie = collision.gameObject;
-            zombie.GetComponent<ZombieHealth>().ZombieTakeDamage(damage);
+            zombie.GetComponentInParent<ZombieHealth>().ZombieTakeDamage(damage);
             pierceCounter++;
             if (piercing == pierceCounter)
             {

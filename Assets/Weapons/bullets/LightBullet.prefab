@@ -52,6 +52,7 @@ MonoBehaviour:
   damage: 20
   impactEffect: {fileID: 0}
   piercing: 1
+  isSniperBullet: 0
 --- !u!58 &8491965756759451692
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -99,17 +100,17 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
