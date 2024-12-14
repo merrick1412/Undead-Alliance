@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("hit zombie");
             GameObject zombie = collision.gameObject;
-            zombie.GetComponent<ZombieHealth>().ZombieTakeDamage(damage);
+            zombie.GetComponentInParent<ZombieHealth>().ZombieTakeDamage(damage);
             pierceCounter++;
             if (piercing == pierceCounter)
             {
