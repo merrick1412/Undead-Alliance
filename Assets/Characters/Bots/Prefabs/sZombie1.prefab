@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -4763680932059462503}
   - component: {fileID: 4266962151883396431}
   - component: {fileID: -5716297114940669581}
-  - component: {fileID: -7448861859075753366}
   - component: {fileID: -839448258965499968}
   m_Layer: 7
   m_Name: sZombie1
@@ -92,7 +91,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -154,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ed72eeaa27c7c44b2e7cc20c035ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
+  _playerAwarenessDistance: 100
 --- !u!95 &-5716297114940669581
 Animator:
   serializedVersion: 5
@@ -176,19 +175,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-7448861859075753366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3604863785331745336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ed72eeaa27c7c44b2e7cc20c035ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
 --- !u!114 &-839448258965499968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312103ea957bdfe4fb13ed227e5b44f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _rotationSpeed: 0
+  _speed: 1
+  _rotationSpeed: 100
   _screenBorder: 0
 --- !u!1001 &697855731613585851
 PrefabInstance:
@@ -264,7 +250,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Graphics
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9048394201656015538, guid: c95c32a86ee2e9b49b3cf3e880e959b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

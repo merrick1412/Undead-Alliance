@@ -47,7 +47,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -77,7 +77,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -114,6 +114,7 @@ MonoBehaviour:
   damage: 20
   impactEffect: {fileID: 0}
   piercing: 2
+  isSniperBullet: 0
 --- !u!212 &933698710414697098
 SpriteRenderer:
   m_ObjectHideFlags: 0
